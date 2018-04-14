@@ -11,7 +11,7 @@
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Quicksand:400,700%7CCabin:400%7CDancing+Script" rel="stylesheet">
 
-
+`
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
@@ -90,9 +90,14 @@
 					<!-- /nav -->
 
 					<!-- button nav -->
-					<ul class="cta-nav">
-						<li><a href="#" class="main-button">Reserve</a></li>
-					</ul>
+					
+
+					<button class= " cta-nav main-button btn btn-sm">Reserve</button>
+					<button class= " cta-nav main-button btn btn-sm" 
+						data-toggle = "modal" data-target = "#login-modal">
+						Login/Register
+					</button>					
+					
 					<!-- button nav -->
 
 					<!-- contact nav -->
@@ -110,6 +115,63 @@
 
 		</header>
 		<!-- /Header -->
+
+		<div id = "login-modal" class="modal fade login-register-form" role="dialog">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								x
+							</button>
+							<ul class="nav nav-tabs">
+								<li class="active"><a data-toggle="tab" href="#login-form"> Login <span class="glyphicon glyphicon-user"></span></a></li>
+								<li><a data-toggle="tab" href="#registration-form"> Register <span class="glyphicon glyphicon-pencil"></span></a></li>
+							</ul>
+						</div>
+						<div class="modal-body">
+							<div class="tab-content">
+								<div id="login-form" class="tab-pane fade in active">
+									<form action="/">
+										<div class="form-group">
+											<label for="email">Email:</label>
+											<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+										</div>
+										<div class="form-group">
+											<label for="pwd">Password:</label>
+											<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+										</div>
+										<div class="checkbox">
+											<label><input type="checkbox" name="remember"> Remember me</label>
+										</div>
+										<button type="submit" class="btn btn-default main-button">Login</button>
+									</form>
+								</div>
+								<div id="registration-form" class="tab-pane fade">
+									<form action="/">
+										<div class="form-group">
+											<label for="name">Your Name:</label>
+											<input type="text" class="form-control" id="name" placeholder="Enter your name" name="name">
+										</div>
+										<div class="form-group">
+											<label for="newemail">Email:</label>
+											<input type="email" class="form-control" id="newemail" placeholder="Enter new email" name="newemail">
+										</div>
+										<div class="form-group">
+											<label for="newpwd">Password:</label>
+											<input type="password" class="form-control" id="newpwd" placeholder="New password" name="newpwd">
+										</div>
+										<button type="submit" class="btn btn-default main-button">Register</button>
+									</form>
+								</div>
+
+							</div>
+						</div>
+<!--                                    <div class="modal-footer">-->
+<!--                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--                                    </div>-->
+					</div>
+				</div>
+			</div>
 
 		<!-- Home -->
 		<div id="home" class="banner-area">
