@@ -5,7 +5,7 @@ $(document).ready(function(){
 		$("#login-register").html("My Profile");
 		$("#login-register").removeAttr("data-toggle");
 		$("#login-register").click(function() {
-			window.location = "order.html";
+			window.location = "profile.html";
 		});
 	}
 	else
@@ -34,7 +34,7 @@ $(document).ready(function(){
 					localStorage.setItem('user_id', response.user_id);
 					$("#login-register").removeAttr("data-toggle");
 					$("#login-register").click(function() {
-						window.location = "order.html";
+						window.location = "profile.html";
 					});
 					window.location = "index.html";
 				}
