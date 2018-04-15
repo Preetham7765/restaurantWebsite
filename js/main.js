@@ -45,4 +45,18 @@
 		}
 	});
 
+
 })(jQuery);
+
+$("#reply").ready(function(){
+    var ratings = document.getElementsByClassName('rating');
+    console.log("Loaded reply content");
+    for (var i = 0; i < ratings.length; i++) {
+        var r = new SimpleStarRating(ratings[i]);
+
+        ratings[i].addEventListener('rate', function(e) {
+            console.log('Rating: ' + e.detail);
+            $("#user_comment_rating").val(e.detail);
+        });
+    }
+});

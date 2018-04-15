@@ -1,3 +1,7 @@
+<?php
+include "config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -11,7 +15,7 @@
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Quicksand:400,700%7CCabin:400%7CDancing+Script" rel="stylesheet">
 
-`
+
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
@@ -29,6 +33,9 @@
 
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+
+		<!-- Rating stylesheet -->
+		<link type="text/css" rel="stylesheet" href="css/SimpleStarRating.css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -82,21 +89,22 @@
 						<li><a href="#about">About</a></li>
 						<li><a href="#menu">Menu</a></li>
 						<li><a href="#registration">Reservation</a></li>
-						<li><a href="#gallery">Galery</a></li>
-						<li><a href="#events">Events</a></li>
+						<li><a href="#comments">Comments</a></li>
+						<!-- <li><a href="#gallery">Galery</a></li> -->
+						<li><a href="#reply">Reply</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
 					<!-- /nav -->
 
 					<!-- button nav -->
-					
-
-					<button class= " cta-nav main-button btn btn-sm">Reserve</button>
-					<button class= " cta-nav main-button btn btn-sm" 
-						data-toggle = "modal" data-target = "#login-modal" id="login-register">
-						Login/Register
-					</button>					
-					
+					<ul class="cta-nav">
+						<li><a href="#" class="main-button">Reserve</a></li>
+						<?php if(isset($_SESSION['uname'])) {
+							echo '<li><a href="#" class="main-button"> My Profile </a></li>';
+						} else {
+							echo '<li><a href="#" class="main-button"> Login </a></li>';
+						}?>
+					</ul>
 					<!-- button nav -->
 
 					<!-- contact nav -->
@@ -114,60 +122,6 @@
 
 		</header>
 		<!-- /Header -->
-
-		<div id = "login-modal" class="modal fade login-register-form" role="dialog">
-				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
-								x
-							</button>
-							<ul class="nav nav-tabs">
-								<li class="active"><a data-toggle="tab" href="#login-form"> Login <span class="glyphicon glyphicon-user"></span></a></li>
-								<li><a data-toggle="tab" href="#registration-form"> Register <span class="glyphicon glyphicon-pencil"></span></a></li>
-							</ul>
-						</div>
-						<div class="modal-body">
-							<div class="tab-content">
-								<div id="login-form" class="tab-pane fade in active">
-										<div id="wrong-credentials"></div>
-										<div class="form-group">
-											<label for="email">Email:</label>
-											<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-										</div>
-										<div class="form-group">
-											<label for="pwd">Password:</label>
-											<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-										</div>
-										<div class="checkbox">
-											<label><input type="checkbox" name="remember"> Remember me</label>
-										</div>
-										<button class="btn btn-default main-button" id="login-submit">Login</button>
-								</div>
-								<div id="registration-form" class="tab-pane fade">
-										<div class="form-group">
-											<label for="name">Your Name:</label>
-											<input type="text" class="form-control" id="name" placeholder="Enter your name" name="name">
-										</div>
-										<div class="form-group">
-											<label for="newemail">Email:</label>
-											<input type="email" class="form-control" id="newemail" placeholder="Enter new email" name="newemail">
-										</div>
-										<div class="form-group">
-											<label for="newpwd">Password:</label>
-											<input type="password" class="form-control" id="newpwd" placeholder="New password" name="newpwd">
-										</div>
-										<button class="btn btn-default main-button" id="registration-submit">Register</button>
-								</div>
-
-							</div>
-						</div>
-<!--                                    <div class="modal-footer">-->
-<!--                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-<!--                                    </div>-->
-					</div>
-				</div>
-			</div>
 
 		<!-- Home -->
 		<div id="home" class="banner-area">
@@ -309,7 +263,7 @@
 					<!-- menu nav -->
 					<ul class="menu-nav">
 					  <li class="active"><a data-toggle="tab" href="#menu1">Dinner</a></li>
-					  <li><a data-toggle="tab" href="#menu1">Drinks</a></li>
+					  <li><a data-toggle="tab" href="#menu2">Drinks</a></li>
 					  <li><a data-toggle="tab" href="#menu1">Launch</a></li>
 					  <li><a data-toggle="tab" href="#menu1">Dessert</a></li>
 					</ul>
@@ -326,6 +280,121 @@
 								<div class="single-dish">
 									<div class="single-dish-heading">
 										<h4 class="name">Basted Rhubarb Mussels</h4>
+										<h4 class="price">57£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Steamed Chili Moussaka</h4>
+										<h4 class="price">145£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Blanched Fennel & Orange Lasagna</h4>
+										<h4 class="price">79£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Slow-Cooked Basil & Lime Ostrich</h4>
+										<h4 class="price">57£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Stuffed Oregano Chicken</h4>
+										<h4 class="price">145£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+							</div>
+
+							<div class="col-md-6">
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Pressure-Fried Asparagus Chicken</h4>
+										<h4 class="price">57£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Tenderized Egg & Coconut Duck</h4>
+										<h4 class="price">87£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Milk Chocolate Gingerbread</h4>
+										<h4 class="price">155£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Simmered Mango & Pine Rabbit</h4>
+										<h4 class="price">57£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Red Wine Surprise</h4>
+										<h4 class="price">87£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+							</div>
+
+						</div>
+						<!-- /menu1 -->
+
+
+
+						<!-- menu1 -->
+						<div id="menu2" class="tab-pane fade in">
+							<div class="col-md-6">
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Chicken Biryani</h4>
 										<h4 class="price">57£</h4>
 									</div>
 									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
@@ -458,7 +527,7 @@
 				<div class="row">
 
 					<!-- reservation form -->
-					<div class="col-md-6 col-md-offset-1 col-sm-10 col-sm-offset-1">
+					<div class="col-md-7">
 						<form class="reserve-form row">
 							<div class="section-header text-center">
 								<h4 class="sub-title">Reservation</h4>
@@ -468,7 +537,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="name">Name:</label>
-									<input class="input" type="text" placeholder="Name" id="reg_name">
+									<input class="input" type="text" placeholder="Name" id="name">
 								</div>
 								<div class="form-group">
 									<label for="phone">Phone:</label>
@@ -483,7 +552,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="email">Email:</label>
-									<input class="input" type="email" placeholder="Email" id="reg_email">
+									<input class="input" type="email" placeholder="Email" id="email">
 								</div>
 								<div class="form-group">
 									<label for="number">Number of Guests:</label>
@@ -511,7 +580,7 @@
 					<!-- /reservation form -->
 
 					<!-- opening time -->
-					<div class="col-md-4 col-md-offset-0 col-sm-10 col-sm-offset-1">
+					<div class="col-md-4 ">
 						<div class="opening-time row">
 							<div class="section-header text-center">
 								<h2 class="title white-text">Opening Time</h2>
@@ -559,8 +628,13 @@
 		</div>
 		<!-- /Reservation -->
 
-		<!-- Events -->
-		<div id="events" class="section">
+		<!-- Comments -->
+		<div id="comments" class="section">
+
+			<!-- Backgound Image -->
+			<div class="bg-image bg-parallax overlay" style="background-image:url(./img/background02.jpg)"></div>
+			<!-- <div class="bg-image" style="background-image:url(./img/background02.jpg)"></div> -->
+			<!-- /Backgound Image -->
 
 			<!-- container -->
 			<div class="container">
@@ -568,84 +642,80 @@
 				<!-- row -->
 				<div class="row">
 
-					<!-- section header -->
 					<div class="section-header text-center">
-						<h4 class="sub-title">Special Event</h4>
-						<h2 class="title">Upcoming Event</h2>
+						<h4 class="sub-title">Review and Ratings</h4>
+						<h2 class="title white-text">Comments</h2>
 					</div>
-					<!-- /section header -->
+			
+					<div class="row">
+						<div id="comment_abhi"></div>
+					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" role="dialog">
+						<div class="modal-dialog">
 
-					<!-- single event -->
-					<div class="col-md-6">
-						<div class="event">
-							<div class="event-img">
-								<img src="./img/event01.jpg" alt="">
-								<div class="event-day">
-									<span>08<br>July</span>
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+								  <button type="button" class="close" data-dismiss="modal">&times;</button>
+								  <h4 class="modal-title" id="modal-title"></h4>
 								</div>
-							</div>
-							<div class="event-content">
-								<p><i class="fa fa-clock-o"></i> 8.00PM - 10.00PM</p>
-								<h3><a href="#">te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</a></h3>
-								<p>Te sit stet labitur veritus, sea similique consetetur ut. Ne fastidii oportere usu. Iusto mediocrem iudicabit ea eos, nemore offendit detraxit ei cum.</p>
-							</div>
-						</div>
-					</div>
-					<!-- /single event -->
+								<!-- End modal header -->
 
-					<!-- single event -->
-					<div class="col-md-6">
-						<div class="event">
-							<div class="event-img">
-								<img src="./img/event02.jpg" alt="">
-								<div class="event-day">
-									<span>08<br>July</span>
+								<div class="modal-body" id="modal-body">
+									<h3> Rating: </h3>
+									<div id="user_rating"> </div>
+									<br/>
+									<h3> Review: </h3>
+									<div id="user_message" class="content-newline"> </div>
 								</div>
-							</div>
-							<div class="event-content">
-								<p><i class="fa fa-clock-o"></i> 8.00PM - 10.00PM</p>
-								<h3><a href="#">te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</a></h3>
-								<p>Te sit stet labitur veritus, sea similique consetetur ut. Ne fastidii oportere usu. Iusto mediocrem iudicabit ea eos, nemore offendit detraxit ei cum.</p>
-							</div>
-						</div>
-					</div>
-					<!-- /single event -->
+								<!-- End modal body -->
 
-					<!-- single event -->
-					<div class="col-md-6">
-						<div class="event">
-							<div class="event-img">
-								<img src="./img/event02.jpg" alt="">
-								<div class="event-day">
-									<span>08<br>July</span>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								</div>
+								<!-- End modal footer/close -->
 							</div>
-							<div class="event-content">
-								<p><i class="fa fa-clock-o"></i> 8.00PM - 10.00PM</p>
-								<h3><a href="#">te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</a></h3>
-								<p>Te sit stet labitur veritus, sea similique consetetur ut. Ne fastidii oportere usu. Iusto mediocrem iudicabit ea eos, nemore offendit detraxit ei cum.</p>
-							</div>
+							<!-- End modal content -->
 						</div>
+						<!-- End modal dialog -->
 					</div>
-					<!-- /single event -->
 
-					<!-- single event -->
-					<div class="col-md-6">
-						<div class="event">
-							<div class="event-img">
-								<img src="./img/event01.jpg" alt="">
-								<div class="event-day">
-									<span>08<br>July</span>
-								</div>
-							</div>
-							<div class="event-content">
-								<p><i class="fa fa-clock-o"></i> 8.00PM - 10.00PM</p>
-								<h3><a href="#">te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</a></h3>
-								<p>Te sit stet labitur veritus, sea similique consetetur ut. Ne fastidii oportere usu. Iusto mediocrem iudicabit ea eos, nemore offendit detraxit ei cum.</p>
-							</div>
-						</div>
+					<!-- Pagination -->
+					<div id="pager" style="text-align:center;">
+					      <ul id="pagination" class="pagination-sm"></ul>
 					</div>
-					<!-- /single event -->
+					<!-- End of Pagination -->
+
+				</div>
+				<!-- /row -->
+
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /Comments -->
+
+		<!-- Reply -->
+		<div id="reply" class="section">
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+
+					<div class="blog-reply-form col-md-8 col-md-offset-3">
+						<h3 class="title">Leave a Reply</h3>
+						<input class="input" placeholder="Name" type="text" id="user_comment_name">
+						<input class="input" placeholder="Email" type="email" id="user_comment_email">
+						<div class="rate">
+							<span>Rating: &nbsp;&nbsp;</span>
+								<span class="rating big-red"></span>
+								<input type="hidden" name="rating" id="user_comment_rating">
+							</div>
+						<textarea class="input" placeholder="Message" id="user_comment_message"></textarea>
+						<button class="main-button" id="add_comment">Submit</button></li>
+					</div>
 
 				</div>
 				<!-- /row -->
@@ -654,7 +724,7 @@
 			<!-- /container -->
 
 		</div>
-		<!-- /Events -->
+		<!-- /Reply -->
 
 		<!-- Contact -->
 		<div id="contact" class="section">
@@ -722,7 +792,7 @@
 							<a href="#">Menu</a>
 							<a href="#">Reservation</a>
 							<a href="#">Galery</a>
-							<a href="#">Events</a>
+							<a href="#">Reply</a>
 							<a href="#">Contact</a>
 						</nav>
 					</div>
@@ -750,12 +820,15 @@
 		<!-- jQuery Plugins -->
 		<script type="text/javascript" src="js/jquery.min.js"></script>
     	<script type="text/javascript" src="js/index.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/SimpleStarRating.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
 		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmK_bdJ6DF3zIWcrEz0cd-z-_2j937Z5I&v=3.exp&sensor=false"></script>
 		<script type="text/javascript" src="js/google-map.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
-    	<script type="text/javascript" src="js/login.js"></script>
+		<script src="js/jquery.twbsPagination.min.js"></script>
+		<script src="js/comment.js"></script>
 
 	</body>
 </html>

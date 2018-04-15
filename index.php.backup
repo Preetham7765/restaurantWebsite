@@ -1,3 +1,7 @@
+<?php
+include "config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -11,7 +15,7 @@
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Quicksand:400,700%7CCabin:400%7CDancing+Script" rel="stylesheet">
 
-`
+
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
@@ -82,21 +86,22 @@
 						<li><a href="#about">About</a></li>
 						<li><a href="#menu">Menu</a></li>
 						<li><a href="#registration">Reservation</a></li>
-						<li><a href="#gallery">Galery</a></li>
+						<li><a href="#login">Login</a></li>
+						<!-- <li><a href="#gallery">Galery</a></li> -->
 						<li><a href="#events">Events</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
 					<!-- /nav -->
 
 					<!-- button nav -->
-					
-
-					<button class= " cta-nav main-button btn btn-sm">Reserve</button>
-					<button class= " cta-nav main-button btn btn-sm" 
-						data-toggle = "modal" data-target = "#login-modal" id="login-register">
-						Login/Register
-					</button>					
-					
+					<ul class="cta-nav">
+						<li><a href="#" class="main-button">Reserve</a></li>
+						<?php if(isset($_SESSION['uname'])) {
+							echo '<li><a href="#" class="main-button"> My Profile </a></li>';
+						} else {
+							echo '<li><a href="#" class="main-button"> Login </a></li>';
+						}?>
+					</ul>
 					<!-- button nav -->
 
 					<!-- contact nav -->
@@ -114,60 +119,6 @@
 
 		</header>
 		<!-- /Header -->
-
-		<div id = "login-modal" class="modal fade login-register-form" role="dialog">
-				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
-								x
-							</button>
-							<ul class="nav nav-tabs">
-								<li class="active"><a data-toggle="tab" href="#login-form"> Login <span class="glyphicon glyphicon-user"></span></a></li>
-								<li><a data-toggle="tab" href="#registration-form"> Register <span class="glyphicon glyphicon-pencil"></span></a></li>
-							</ul>
-						</div>
-						<div class="modal-body">
-							<div class="tab-content">
-								<div id="login-form" class="tab-pane fade in active">
-										<div id="wrong-credentials"></div>
-										<div class="form-group">
-											<label for="email">Email:</label>
-											<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-										</div>
-										<div class="form-group">
-											<label for="pwd">Password:</label>
-											<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-										</div>
-										<div class="checkbox">
-											<label><input type="checkbox" name="remember"> Remember me</label>
-										</div>
-										<button class="btn btn-default main-button" id="login-submit">Login</button>
-								</div>
-								<div id="registration-form" class="tab-pane fade">
-										<div class="form-group">
-											<label for="name">Your Name:</label>
-											<input type="text" class="form-control" id="name" placeholder="Enter your name" name="name">
-										</div>
-										<div class="form-group">
-											<label for="newemail">Email:</label>
-											<input type="email" class="form-control" id="newemail" placeholder="Enter new email" name="newemail">
-										</div>
-										<div class="form-group">
-											<label for="newpwd">Password:</label>
-											<input type="password" class="form-control" id="newpwd" placeholder="New password" name="newpwd">
-										</div>
-										<button class="btn btn-default main-button" id="registration-submit">Register</button>
-								</div>
-
-							</div>
-						</div>
-<!--                                    <div class="modal-footer">-->
-<!--                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-<!--                                    </div>-->
-					</div>
-				</div>
-			</div>
 
 		<!-- Home -->
 		<div id="home" class="banner-area">
@@ -309,7 +260,7 @@
 					<!-- menu nav -->
 					<ul class="menu-nav">
 					  <li class="active"><a data-toggle="tab" href="#menu1">Dinner</a></li>
-					  <li><a data-toggle="tab" href="#menu1">Drinks</a></li>
+					  <li><a data-toggle="tab" href="#menu2">Drinks</a></li>
 					  <li><a data-toggle="tab" href="#menu1">Launch</a></li>
 					  <li><a data-toggle="tab" href="#menu1">Dessert</a></li>
 					</ul>
@@ -326,6 +277,121 @@
 								<div class="single-dish">
 									<div class="single-dish-heading">
 										<h4 class="name">Basted Rhubarb Mussels</h4>
+										<h4 class="price">57£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Steamed Chili Moussaka</h4>
+										<h4 class="price">145£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Blanched Fennel & Orange Lasagna</h4>
+										<h4 class="price">79£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Slow-Cooked Basil & Lime Ostrich</h4>
+										<h4 class="price">57£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Stuffed Oregano Chicken</h4>
+										<h4 class="price">145£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+							</div>
+
+							<div class="col-md-6">
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Pressure-Fried Asparagus Chicken</h4>
+										<h4 class="price">57£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Tenderized Egg & Coconut Duck</h4>
+										<h4 class="price">87£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Milk Chocolate Gingerbread</h4>
+										<h4 class="price">155£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Simmered Mango & Pine Rabbit</h4>
+										<h4 class="price">57£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Red Wine Surprise</h4>
+										<h4 class="price">87£</h4>
+									</div>
+									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
+								</div>
+								<!-- /single dish -->
+
+							</div>
+
+						</div>
+						<!-- /menu1 -->
+
+
+
+						<!-- menu1 -->
+						<div id="menu2" class="tab-pane fade in">
+							<div class="col-md-6">
+
+								<!-- single dish -->
+								<div class="single-dish">
+									<div class="single-dish-heading">
+										<h4 class="name">Chicken Biryani</h4>
 										<h4 class="price">57£</h4>
 									</div>
 									<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
@@ -458,7 +524,7 @@
 				<div class="row">
 
 					<!-- reservation form -->
-					<div class="col-md-6 col-md-offset-1 col-sm-10 col-sm-offset-1">
+					<div class="col-md-7">
 						<form class="reserve-form row">
 							<div class="section-header text-center">
 								<h4 class="sub-title">Reservation</h4>
@@ -468,7 +534,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="name">Name:</label>
-									<input class="input" type="text" placeholder="Name" id="reg_name">
+									<input class="input" type="text" placeholder="Name" id="name">
 								</div>
 								<div class="form-group">
 									<label for="phone">Phone:</label>
@@ -483,7 +549,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="email">Email:</label>
-									<input class="input" type="email" placeholder="Email" id="reg_email">
+									<input class="input" type="email" placeholder="Email" id="email">
 								</div>
 								<div class="form-group">
 									<label for="number">Number of Guests:</label>
@@ -511,7 +577,7 @@
 					<!-- /reservation form -->
 
 					<!-- opening time -->
-					<div class="col-md-4 col-md-offset-0 col-sm-10 col-sm-offset-1">
+					<div class="col-md-4 col-md-offset-1">
 						<div class="opening-time row">
 							<div class="section-header text-center">
 								<h2 class="title white-text">Opening Time</h2>
@@ -558,6 +624,59 @@
 
 		</div>
 		<!-- /Reservation -->
+
+		<!-- LOGIN -->
+
+		<?php if(!isset($_SESSION['uname'])){
+			echo '
+		<div id="login" class="section">
+
+			<!-- Backgound Image -->
+			<div class="bg-image bg-parallax overlay" style="background-image:url(./img/background02.jpg)"></div>
+			<!-- <div class="bg-image" style="background-image:url(./img/background02.jpg)"></div> -->
+			<!-- /Backgound Image -->
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+
+					<!-- reservation form -->
+					<div class="col-md-6 col-md-offset-1 col-sm-10 col-sm-offset-1">
+						<form class="reserve-form row" action="./checkUser.php" method="post">
+							<div class="section-header text-center">
+								<h4 class="sub-title">Login</h4>
+								<h2 class="title white-text">Log into the system</h2>
+							</div>
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="name">Username:</label>
+									<input class="input" type="text" placeholder="Name" id="username", name="username">
+								</div>
+								<div class="form-group">
+									<label for="phone">Password:</label>
+									<input class="input" type="password" placeholder="Phone" id="password", name="password">
+								</div>
+							</div>
+
+							<div class="col-md-12 text-center">
+								<button class="main-button">Sign In</button>
+							</div>
+
+						</form>
+					</div>
+					<!-- /reservation form -->
+				</div>
+				<!-- /row -->
+
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /LOGIN -->
+			';
+		}?>
 
 		<!-- Events -->
 		<div id="events" class="section">
@@ -748,14 +867,13 @@
 		<!-- /Preloader -->
 
 		<!-- jQuery Plugins -->
+    	<!-- <script type="text/javascript" src="js/index.js"></script> -->
 		<script type="text/javascript" src="js/jquery.min.js"></script>
-    	<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmK_bdJ6DF3zIWcrEz0cd-z-_2j937Z5I&v=3.exp&sensor=false"></script>
 		<script type="text/javascript" src="js/google-map.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
-    	<script type="text/javascript" src="js/login.js"></script>
 
 	</body>
 </html>
