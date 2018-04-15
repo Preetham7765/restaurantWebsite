@@ -17,6 +17,10 @@
     text-align:center;
 }
 
+#total_display {
+    float: right;
+}
+
 .bottom-div {
     position: absolute;
     top: 20%;
@@ -48,6 +52,13 @@
     color: #fff;
     background-color: #f36500;
 }   
+
+.checkout-summary {
+    margin-top: 200px !important;
+    margin-left: 50px;
+    font-family: 'Quicksand', sans-serif;
+    color: #212529;
+}
 
 .menu-content {
     overflow-y: auto;
@@ -84,13 +95,29 @@
 #order-card {
     width: 23rem; 
     margin-top: 40px;
-
 }
 
 .item-title {
     font-size:15px;
     float: left;
 }
+
+.summary-item-title {
+    width: 190px;
+    display: inline-block;
+}
+
+.summary-item-count {
+    width: 50px;
+    display: inline-block;
+}
+
+.summary-item-cost {
+    width: 20px;
+    color: #f36700;
+    font-weight: bold;
+}
+
 .fa-shopping-cart {
     font-size: 25px;
     color:#f36500 !important;
@@ -113,6 +140,9 @@
     margin-top: 10px;
 }
 
+#total-display {
+    float: right;
+}
 /* --- Background Image --- */
 .bg-image {
 	position:absolute;
