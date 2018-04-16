@@ -87,6 +87,7 @@ $(document).ready(function() {
             //count 
             var count =document.createElement('span');
             count.setAttribute('id', 'count');
+            count.setAttribute('class', 'countItem');
             count.innerHTML = newItem.count;
         
             //totalprice
@@ -94,6 +95,7 @@ $(document).ready(function() {
             var price_element = document.createElement('span');
             price_element.setAttribute('id', 'price');
             price_element.setAttribute('style', 'float: right; color: #f36500;');
+            price_element.setAttribute('class', 'totalPriceItem');
             price_element.innerHTML = '$' + total_cost;
 
 
@@ -156,20 +158,22 @@ $(document).ready(function() {
     }
 
     $(".addItem").click( function() {
-        var itemTitle = $(this).closest('td').prev().text();
+        var itemTitle = $(this).parent().prev().text();
+        console.log("Debug", $(this).parent().prev().text());
         addItem(itemTitle, $(this));
     });
 
 
     $(".container").on('click', '#addItem-summary', function() {
-        itemTitle = $(this).parent().find('span').html();
+        var itemTitle = $(this).parent().find('span.item-title').html();
+        console.log("itemTitle",itemTitle);
         addItem(itemTitle);
     });
 
     $(".container").on('click', '#deleteItem',function() {
 
         console.log("Preetham");
-        itemTitle = $(this).parent().find('span').html();
+        var itemTitle = $(this).parent().find('span').html();
         deleteItem(itemTitle);
         
     });
