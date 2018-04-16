@@ -178,4 +178,20 @@ $(document).ready(function() {
         
     });
 
+    $(".container").on('click', '#clear-cart', function() {
+
+        console.log('clearing cart');
+        grand_total = 0;
+        order_count = 0;
+        $('div#grand-total').remove();
+        $('ul#order-summary').empty();
+        order_summary = [];
+        console.log("setting hidden to true");
+        $('#order-card').attr('hidden', true);
+    });
+
+    $(".container").on('click', '#checkout', function() {
+        localStorage.setItem('order_summary', JSON.stringify(order_summary));
+        window.location.href = 'checkout.html';
+    });
 });

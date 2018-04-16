@@ -4,7 +4,7 @@ $(document).ready(function() {
 	{title: "Breakfast- Item1", count: 7, id: 1, cost: "25"},
 	{title: "Breakfast- Item2", count: 6, id: 2, cost: "125"}
 	];
-	order_summary = JSON.stringify(order_summary);
+	order_summary = localStorage.getItem('order_summary');
 
 	new_summary = JSON.parse(order_summary);
 
