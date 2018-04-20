@@ -194,4 +194,9 @@ $(document).ready(function() {
         localStorage.setItem('order_summary', JSON.stringify(order_summary));
         window.location.href = 'checkout.html';
     });
+
+    
+
+
+
 });
