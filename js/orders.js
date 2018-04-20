@@ -1,8 +1,9 @@
 $(document).ready(function() {
     
-    order_summary = [];
-    grand_total = 0
-    order_count = 0;
+    var order_summary = [];
+    var grand_total = 0
+    var order_count = 0;
+    
 
     // each object has three fields title, count and total cost.
     /* example 
@@ -17,15 +18,246 @@ $(document).ready(function() {
         ]
     */
 
+    /*
+        {
+            breakfast: {
+                sub-cat1 : [
+                    {
+                        name: ,
+                        descp: ,
+                        cost: ,
+                    },
+                    {
+                        name: ,
+                        descp: ,
+                        cost: ,
+                    },
+                    {
+                        name: ,
+                        descp: ,
+                        cost: ,
+                    }
+                ],
+                sub-cat2 : [
+                    name: ,
+                    descp: ,
+                    cost: ,
+                ],
+                sub-cat1 : [
+                    name: ,
+                    descp: ,
+                    cost: ,
+                ],
+                sub-cat1 : [
+                    name: ,
+                    descp: ,
+                    cost: ,
+                ]
+            },
+
+            lunch: {
+                sub-cat1 : [
+                    name: ,
+                    descp: ,
+                    cost: ,
+                ],
+                sub-cat1 : [
+                    name: ,
+                    descp: ,
+                    cost: ,
+                ],
+                sub-cat1 : [
+                    name: ,
+                    descp: ,
+                    cost: ,
+                ]
+            },
+
+            dinner: {
+                sub-cat1 : [
+                    name: ,
+                    descp: ,
+                    cost: ,
+                ]
+            },
+
+        }
+
+        
+    */
+        /********* sample menuitems *************** */
+        menu_items = {
+            'lunch': {
+                'sub-cat1' : [
+                                {
+                                    name: 'Test String1',
+                                    descp: 'Test String1',
+                                    cost: '$25',
+                                },
+                                {
+                                    name: 'Test String2',
+                                    descp: 'Test String2',
+                                    cost: '$25',
+                                },
+                                {
+                                    name: 'Test String3',
+                                    descp: 'Test String3',
+                                    cost: '$25',
+                                }
+                            ],
+                'sub-cat2' : [
+                                {
+                                    name: 'adasdasdaddadadsadsad',
+                                    descp: 'fasffgdfgdfhfghfghfh',
+                                    cost: '$25',
+                                }
+                            ]    
+            
+            },
+            'dinner': {
+                'sub-cat1' : [
+                                {
+                                    name: 'Test String4',
+                                    descp: 'Test String1',
+                                    cost: '$25',
+                                },
+                                {
+                                    name: 'Test String5',
+                                    descp: 'Test String2',
+                                    cost: '$25',
+                                },
+                                {
+                                    name: 'Test String6',
+                                    descp: 'Test String3',
+                                    cost: '$25',
+                                }
+                            ],
+                'sub-cat2' : [
+                                {
+                                    name: 'adasdasdaddadadsadsad',
+                                    descp: 'fasffgdfgdfhfghfghfh',
+                                    cost: '$25',
+                                }
+                            ]    
+            
+            },
+            'drinks': {
+                'sub-cat1' : [
+                                {
+                                    name: 'Test String1',
+                                    descp: 'Test String1',
+                                    cost: '$25',
+                                },
+                                {
+                                    name: 'Test String2',
+                                    descp: 'Test String2',
+                                    cost: '$25',
+                                },
+                                {
+                                    name: 'Test String3',
+                                    descp: 'Test String3',
+                                    cost: '$25',
+                                }
+                            ],
+                'sub-cat2' : [
+                                {
+                                    name: 'adasdasdaddadadsadsad',
+                                    descp: 'fasffgdfgdfhfghfghfh',
+                                    cost: '$25',
+                                }
+                            ]    
+            
+            }
+        }    
+
+    /*$.ajax(
+
+        {
+            url : 'menu-items.php',
+            dataType: 'json',
+            success: function(result) {
+                menu_items = result;
+                console.log(menu_items);
+            } 
+        }
+    );*/
+
+    displayItems('lunch');
+
+    /*
+        display each subcategory for a given category.
+
+    */
+    
+    function displayItems(category) {
+
+        var categoryItems = menu_items[category]; // { }
+        var subCategory_names = Object.keys(categoryItems); // 
+        var subCatMenu = `<div id=` +`"` + category +`"` + `class="tab-pane fade in active">
+            <div class="col-md-2">
+                <div class="sidebar-nav">
+                    <div class="navbar navbar-default" role="navigation">
+                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                            <ul class="nav navbar-nav">`
+
+        for(var item in subCategory_names){
+            subCatMenu += '<li id = "item' + item + '" ' + 'class = "active">' 
+                            + '<a id = "sub-cat' + item + '" class = "dummy"> ' + 
+                            subCategory_names[item]  + '</a></li>';
+        }
+
+        subCatMenu += '</ul></div><!--/.nav-collapse --></div></div></div>';
+        var subCatItems = getMenuItems(category, subCategory_names[0]); // default: select first category
+        $('div#menu-content').prepend(subCatMenu + subCatItems);   
+       
+    }
+
+    /*
+        returns the mark-up containing menu items
+        of all given a category and subCategory
+
+    */
+
+    function getMenuItems(category, subCategory) {
+
+        console.log(category, subCategory);
+        var active_menu = menu_items[category.trim()][subCategory.trim()]; //
+        var menu_item = '<div class="col-md-5 dish-content">';
+
+        console.log(active_menu);
+        for(var item in active_menu) {
+            if(active_menu.hasOwnProperty(item)) {
+
+                dish = `<div class="single-dish">
+                    <div class="single-dish-heading">
+                        <h4 class="name">` + active_menu[item].name + `</h4>
+                            <h4 class="price">` + active_menu[item].cost + `
+                                <a class="fa fa-plus-circle addItem"></a>											
+                        </h4>
+                    </div>
+                    <p>` + active_menu[item].descp + `</p>
+                </div>`
+
+                menu_item += dish;
+
+            } 
+        }
+
+        menu_item += '</div>';
+
+        return menu_item;
+
+    }
+
+        
     function addItem(itemTitle, self = '') {
 
-        //console.log("result"+ itemTitle);
         if (order_summary.filter(e => e.title === itemTitle).length > 0) {
             //console.log('vendors contains the element were looking for '); 
 
-            index = order_summary.findIndex((obj => obj.title == itemTitle));
-            item = order_summary[index] 
-            id = item.id;
+            var index = order_summary.findIndex((obj => obj.title == itemTitle));
+            var item = order_summary[index] 
+            var id = item.id;
 
             //update count
             item.count += 1;
@@ -47,7 +279,7 @@ $(document).ready(function() {
 
             console.log('key not Found ' + itemTitle);
             
-            newItem = {};
+            var newItem = {};
             newItem.title = itemTitle;
             newItem.count = 1;
             newItem.id = order_count;
@@ -77,7 +309,7 @@ $(document).ready(function() {
             //deleteButton
             var deleteButton = document.createElement('a');
             deleteButton.setAttribute('id', 'deleteItem');
-            deleteButton.setAttribute('class', 'fa fa-minus-circle addItem');            
+            deleteButton.setAttribute('class', 'fa fa-minus-circle');            
 
             //addButton
             var addButton = document.createElement('a');
@@ -100,7 +332,7 @@ $(document).ready(function() {
 
 
             var liItem =document.createElement('li');
-            id = 'order-list-id' + order_count;
+            var id = 'order-list-id' + order_count;
             liItem.setAttribute('id', id);
             liItem.className = 'list-group-item';
             itemTitle = '<span class= "item-title">' + itemTitle + '</span>';
@@ -118,17 +350,16 @@ $(document).ready(function() {
        
         //when to add ->atleast one element
         //when to update ->  
-        //when to remove -> there are no elements in the order_summary
-
-       
-        
+        //when to remove -> there are no elements in the order_summary    
     }
+
     function deleteItem(itemTitle) {
 
         console.log("Deleteing Item");
         var index = order_summary.findIndex((obj => obj.title == itemTitle));
         var item = order_summary[index]
         var item_id = item.id;
+
         var element = '#order-list-id' + item_id;
         item.count -= 1;
         grand_total -= item.cost;
@@ -157,7 +388,7 @@ $(document).ready(function() {
                 
     }
 
-    $(".addItem").click( function() {
+    $(".container").on('click', '.addItem', function() {
         var itemTitle = $(this).parent().prev().text();
         console.log("Debug", $(this).parent().prev().text());
         addItem(itemTitle, $(this));
@@ -172,8 +403,8 @@ $(document).ready(function() {
 
     $(".container").on('click', '#deleteItem',function() {
 
-        console.log("Preetham");
         var itemTitle = $(this).parent().find('span').html();
+        console.log("itemTitle", itemTitle);
         deleteItem(itemTitle);
         
     });
@@ -195,8 +426,43 @@ $(document).ready(function() {
         window.location.href = 'checkout.html';
     });
 
-    
+    $("#lunch").click( function() {
+        $('#menu-content div:first').remove();
+        $('#menu-content div:nth-child(2)').remove();
+        console.log('lunch calling');
+        displayItems('lunch');
+    });
 
+    $("#dinner").click( function() {
+        $('#menu-content div:first').remove();
+        $('#menu-content div:nth-child(2)').remove();
+        console.log('dinner calling');
+        displayItems('dinner');
+    });
 
+    $("#drinks").click( function() {
+        $('#menu-content div:first').remove();
+        $('#menu-content div:nth-child(2)').remove();
+        console.log('drinks calling');
+        displayItems('drinks');
+
+    });
+
+    $("#weekends").click( function() {
+        $('#menu-content div:first').remove();
+        $('#menu-content div:nth-child(2)').remove();
+        console.log('weekends calling');
+        displayItems('weekends');
+    });
+
+    $(".container").on('click', '.dummy', function() {
+        var subCategory = $(this).text();
+        var category = $('.tab-pane').attr('id');
+        var subCatItems= getMenuItems(category, subCategory);
+        console.log(subCatItems);
+        $('div.dish-content').remove();
+        $element = 'div#'+ category + ' > div:nth-child(1)';
+        $($element).after(subCatItems);
+    });
 
 });

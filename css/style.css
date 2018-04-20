@@ -650,7 +650,7 @@ textarea.input {
 }
 
 .menu-nav li {
-	/*position:relative;*/
+	position:relative;
 	display:inline-block;
 	margin-right:-4px;
 	border-bottom: 1px solid #ECECEC;
@@ -1352,7 +1352,7 @@ textarea.input {
 	}
   }
 
-.addItem {
+.addItem, #deleteItem {
 	font-size:18px;
 	/* margin-right: 20px; */
 	/* margin-left: 20px; */

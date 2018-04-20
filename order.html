@@ -21,7 +21,7 @@
 		<!-- Font Awesome Icon -->
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 
-		<!-- Custom stlylesheet -->
+		<!-- Custom stylesheet -->
 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -129,139 +129,41 @@
 
 					<!-- menu nav -->
 					<ul class="menu-nav">
-					  <li class="active"><a data-toggle="tab" href="#dinner">Dinner</a></li>
-					  <li><a data-toggle="tab" href="#menu1">Drinks</a></li>
-					  <li><a data-toggle="tab" href="#menu1">Launch</a></li>
-					  <li><a data-toggle="tab" href="#menu1">Dessert</a></li>
+					  <li class="active"><a data-toggle="tab" id="lunch">Lunch</a></li>
+					  <li><a data-toggle="tab" id="dinner">Dinner</a></li>
+					  <li><a data-toggle="tab" id="drinks">Drinks</a></li>
+					  <li><a data-toggle="tab" id="weekends">Weekends</a></li>
 					</ul>
 					<!-- /menu nav -->
-
 					<!-- menu content -->
 					<div id="menu-content" class="tab-content">
-
-						<!-- menu1 -->
-						<div id="dinner" class="tab-pane fade in active">
-							<div class="col-md-2">
-								<div class="sidebar-nav">
-									<div class="navbar navbar-default" role="navigation">
-									  <div class="navbar-header">
-										<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-										  <span class="sr-only">Toggle navigation</span>
-										  <span class="icon-bar"></span>
-										  <span class="icon-bar"></span>
-										  <span class="icon-bar"></span>
-										</button>
-										<span class="visible-xs navbar-brand">Sidebar menu</span>
-									  </div>
-									  <div class="navbar-collapse collapse sidebar-navbar-collapse">
-										<ul class="nav navbar-nav">
-										  <li class="active"><a href="#">Menu Item 1</a></li>
-										  <li><a href="#">Menu Item 2</a></li>
-										  <li><a href="#">Menu Item 3</a></li>
-										  <li><a href="#">Menu Item 4</a></li>
-										  <li><a href="#">Reviews <span class="badge">1,118</span></a></li>
-										</ul>
-									  </div><!--/.nav-collapse -->
+						<div class="col-md-5">
+							<div id= "order-card" class="card" hidden>
+								<div class="card-body">
+									<div class = "shopping-cart">
+										<i class="fa fa-shopping-cart"></i>
+										<span class = "order-text"> MY ORDER</span>
 									</div>
-								  </div>
-								</div>							
-								<div class="col-md-5 dish-content">
-
-									<!-- single dish -->
-									<div class="single-dish">
-										<div class="single-dish-heading">
-											<h4 class="name">Pressure-Fried Asparagus Chicken</h4>
-											<h4 class="price">$57
-												<a class="fa fa-plus-circle addItem" ></a>											
-											</h4>
-										</div>
-										<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
-									</div>
-									<!-- /single dish -->
-
-									<!-- single dish -->
-									<div class="single-dish">
-										<div class="single-dish-heading">
-											<h4 class="name">Tenderized Egg and Coconut Duck</h4>
-											<h4 class="price">$87
-												<a class="fa fa-plus-circle addItem" ></a>
-											</h4>
-										</div>
-										<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
-									</div>
-									<!-- /single dish -->
-
-									<!-- single dish -->
-									<div class="single-dish">
-										<div class="single-dish-heading">
-											<h4 class="name">Milk Chocolate Gingerbread</h4>
-											<h4 class="price">$155
-												<a class="fa fa-plus-circle addItem" ></a>
-											</h4>
-										</div>
-										<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
-									</div>
-									<!-- /single dish -->
-
-									<!-- single dish -->
-									<div class="single-dish">
-										<div class="single-dish-heading">
-											<h4 class="name">Simmered Mango and Pine Rabbit</h4>
-											<h4 class="price">$57
-												<a class="fa fa-plus-circle addItem" ></a>
-											</h4>
-										</div>
-										<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
-									</div>
-									<!-- /single dish -->
-
-									<!-- single dish -->
-									<div class="single-dish">
-										<div class="single-dish-heading">
-											<h4 class="name">Red Wine Surprise</h4>
-											<h4 class="price">$87
-												<a class="fa fa-plus-circle addItem" ></a>
-											</h4>
-										</div>
-										<p>te vero tritani iuvaret vis. Nec odio periculis adipiscing an.</p>
-									</div>
-									<!-- /single dish -->
-								</div>							
-							</div>
-							<div class="col-md-5">
-								<div id= "order-card" class="card" hidden>
+									<ul id = "order-summary" class="list-group list-group-flush">
+									</ul>
 									<div class="card-body">
-										<div class = "shopping-cart">
-											<i class="fa fa-shopping-cart"></i>
-											<span class = "order-text"> MY ORDER</span>
-										</div>
-										<ul id = "order-summary" class="list-group list-group-flush">
-										</ul>
-										<div class="card-body">
-											<button id = "clear-cart" class="btn btn-danger" style = "margin-right:65px; float: left;">
-												Clear Order
-											</button>
-											<button id = "checkout" class="btn btn-success" style="float: right;">
-												Check Out
-											</button>
-										</div>
+										<button id = "clear-cart" class="btn btn-danger" style = "margin-right:65px; float: left;">
+											Clear Order
+										</button>
+										<button id = "checkout" class="btn btn-success" style="float: right;">
+											Check Out
+										</button>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- /menu1 -->
-
 					</div>
 					<!-- /menu content -->
-
 				</div>
 				<!-- /row -->
-
 			</div>
-			<!-- /container -->
-
 		</div>
-
+		<!-- /container -->
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
