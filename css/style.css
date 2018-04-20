@@ -90,6 +90,63 @@ ul,ol{
 	padding-bottom:80px;
 }
 
+.checkout {
+	height: 100%; 
+	padding-top:80px;
+	padding-bottom:80px;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content-newline {
+	white-space: pre-wrap;
+}
+
+.checked {
+	color: #f36700;
+}
+
+.comment-edit {
+	padding-top:20px;
+	height: 200px;
+}
+
+.subject-overflow {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	height: 82px;
+	white-space: pre-wrap;
+}
+/*.checkout-submit{
+	height:50px;width:150px;align-content: center;border:1px solid red;
+}
+*/
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #f36700;
+    border-color: #f36700;
+}
+
+.checkout-submit {
+	height:150px;
+	width:300px;
+	align-content:center;
+	border:1px solid red;
+}
+
+.checkout-submit:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
 .section-header .title {
 	font-family: 'Dancing Script', cursive;
 	margin-top:0px;
@@ -177,6 +234,13 @@ textarea.input {
 	height: 160px;
 	padding: 10px;
 	border-radius: 20px;
+}
+
+.rate {
+	width: 100%;
+	height: 40px;
+	padding: 0px 10px;
+	background: transparent;
 }
 
 /*------------------------------------*\
@@ -1031,6 +1095,11 @@ textarea.input {
 	display:block;
 	max-width:300px;
 	margin-bottom:20px;
+}
+
+.blog-reply-form .rate{
+	display:block;
+	max-width:300px;
 }
 
 .blog-reply-form textarea.input {
