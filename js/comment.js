@@ -60,7 +60,7 @@ $(document).ready(function(){
 		var div;
 		var ul;
 		$('#comment_abhi').html('');
-		console.log("Chaning comments");
+		console.log("Changing comments");
 		for (var i = 0; i < displayRecords.length; i++) {
 			div = $('<div class="col-sm-4 comment-edit" id="c'+i+'"><div/>');
 			ul = $('<ul class="list-group"></ul>');
@@ -80,10 +80,21 @@ $(document).ready(function(){
 			ul.append('<li class="list-group-item" id="c_rating'+i+'">' + data + '</li>');
 			ul.append('<li class="list-group-item subject-overflow" id="c_message'+i+'">' + displayRecords[i].message + '</li>');
 			div.append(ul);
+			$(div).click(function() {
+				var elements = $(this).find("li");
+				// $(this).children('ul').each(function() {
+				// 	console.log("Clicked: " + $(this).html());
+				// });
+				$("#modal-title").html($(elements[0]).html() +"'s comment");
+				$("#user_rating").html($(elements[1]).html());
+				$("#user_message").html($(elements[2]).html());
+				// console.log($("#c_message0").html());
+				$("#myModal").modal();
+			});
 			// console.log(div);
 			$('#comment_abhi').append(div);
 		}
-		load_events();
+		// load_events();
 	}	
 
 	function apply_pagination(reload) {
