@@ -1422,7 +1422,7 @@ textarea.input {
 	margin-right:200px;
 }
 
-.input {
+.add-new-item .input {
 	margin-top:30px;
 	/*margin-bottom:20px;*/
 }
@@ -1434,3 +1434,90 @@ textarea.input {
 .red-error {
 	color: red;
 }
+
+#profile-content {
+	overflow:auto;
+	padding:30px 2% 30px;
+	background-color:#FFF;
+	height: 700px;
+}
+
+#past_orders {
+	height: 600px;
+	overflow-y:auto;
+}
+
+#price-total {
+	font-weight: bold;
+	margin-top: 10px;
+	width: 85%;
+	display: inline-block;
+	font-family: 'Quicksand', sans-serif;
+	color: #212529;
+}
+
+#total-display {
+    float: right;
+    font-weight: bold;
+	margin-left:100px;^M
+	margin-right:200px;^M
+ }
+
+#price-display {
+    font-weight: bold;
+    display: inline-block;
+    width: 15%;
+       font-family: 'Quicksand', sans-serif;
+    color: #212529;
+}
+
+.checkout-summary {
+    margin-top: 200px !important;
+    margin-left: 50px;
+    font-family: 'Quicksand', sans-serif;
+    color: #212529;
+}
+
+.summary-item-title {
+    /*width: 240px;*/
+    width: 70%;
+    display: inline-block;
+}
+
+.summary-item-count {
+    /*width: 50px;*/
+    width: 15%;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.summary-item-cost {
+    width: 15%;
+       /*float: right;*/
+    color: #f36700;
+    font-weight: bold;
+}
+
+.fa-shopping-cart {
+    font-size: 25px;
+    color:#f36500 !important;
+}
+
+.my_order {
+       height: 250px;
+       min-height: 250px;
+       overflow-y: hidden;
+       margin-top: 20px;
+       white-space: pre-wrap;
+       background-color: #ededef;
+}
+
+.no_border {
+       border: 0px !important;
+}
+
+#past_orders ul:hover {
+	cursor: pointer;
+}
+
