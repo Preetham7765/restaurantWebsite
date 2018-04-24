@@ -1,24 +1,13 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "admin";
-$dbname = "resturantwebsite";
+include "config.php";
 
 $menu_catgory = array('lunch','dinner', 'drinks', 'weekends');
 $repsonse = array();
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-
 foreach($menu_catgory as $category) {
     $sql = "SELECT * FROM menuitems where category= '$category'";
 
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($con, $sql);
     $sub_categories = array();
     if (mysqli_num_rows($result) > 0) {
     // output data of each row
@@ -46,5 +35,5 @@ foreach($menu_catgory as $category) {
 
 echo json_encode($repsonse);
 
-mysqli_close($conn);
+mysqli_close($con);
 ?>

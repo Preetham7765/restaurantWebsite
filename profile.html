@@ -75,32 +75,28 @@
 				<nav id="nav">
 
 					<!-- nav -->
+
 					<ul class="main-nav nav navbar-nav">
 						<li><a href="index.html#home">Home</a></li>
 						<li><a href="index.html#about">About</a></li>
 						<li><a href="index.html#menu">Menu</a></li>
 						<li><a href="index.html#registration">Reservation</a></li>
-						<li><a href="index.html#gallery">Galery</a></li>
-						<li><a href="index.html#events">Events</a></li>
+						<li><a href="order.html" id="order">Order</a></li>
+						<li><a href="index.html#comments">Comments</a></li>
+						<li><a href="index.html#reply">Reply</a></li>
 						<li><a href="index.html#contact">Contact</a></li>
 					</ul>
 					<!-- /nav -->
 
 					<!-- button nav -->
-					
-
-					<button class= " cta-nav main-button btn btn-sm">Reserve</button>
-					<button class= " cta-nav main-button btn btn-sm" 
-						data-toggle = "modal" data-target = "#login-modal" id="login-register">
-						Login/Register
+					<button class= " cta-nav main-button btn btn-sm" id="sign-out">Sign Out</button>
 					</button>					
-					
 					<!-- button nav -->
 
 					<!-- contact nav -->
 					<ul class="contact-nav nav navbar-nav">
-						<li><a href="#"><i class="fa fa-phone"></i> 045-548-14-97</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> 3685 Granville Lane</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> 812-332-4334</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> 106 N Walnut St </a></li>
 					</ul>
 					<!-- contact nav -->
 
@@ -113,59 +109,6 @@
 		</header>
 		<!-- /Header -->
 
-<!-- 
-		<div id = "login-modal" class="modal fade login-register-form" role="dialog">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							x
-						</button>
-						<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" href="#login-form"> Login <span class="glyphicon glyphicon-user"></span></a></li>
-							<li><a data-toggle="tab" href="#registration-form"> Register <span class="glyphicon glyphicon-pencil"></span></a></li>
-						</ul>
-					</div>
-					<div class="modal-body">
-						<div class="tab-content">
-							<div id="login-form" class="tab-pane fade in active">
-									<div id="wrong-credentials"></div>
-									<div class="form-group">
-										<label for="email">Email:</label>
-										<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-									</div>
-									<div class="form-group">
-										<label for="pwd">Password:</label>
-										<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-									</div>
-									<div class="checkbox">
-										<label><input type="checkbox" name="remember"> Remember me</label>
-									</div>
-									<button class="btn btn-default main-button" id="login-submit">Login</button>
-							</div>
-							<div id="registration-form" class="tab-pane fade">
-									<div class="form-group">
-										<label for="name">Your Name:</label>
-										<input type="text" class="form-control" id="name" placeholder="Enter your name" name="name">
-									</div>
-									<div class="form-group">
-										<label for="newemail">Email:</label>
-										<input type="email" class="form-control" id="newemail" placeholder="Enter new email" name="newemail">
-									</div>
-									<div class="form-group">
-										<label for="newpwd">Password:</label>
-										<input type="password" class="form-control" id="newpwd" placeholder="New password" name="newpwd">
-									</div>
-									<button class="btn btn-default main-button" id="registration-submit">Register</button>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
- -->
-
 		<div id="home" class="banner-area">
 			<div class="bg-image bg-parallax overlay" style="background-image:url(./img/background02.jpg)"></div>
 
@@ -177,9 +120,9 @@
 					  <li><a data-toggle="tab" href="#past_comments">Past Comments</a></li>
 					</ul>
 
-					<div id="menu-content" class="tab-content">
+					<div id="menu-profile-content" class="tab-content">
 
-						<div id="info"  class="tab-pane fade in active">
+						<div id="info" class="tab-pane fade in active">
 
 							<div class="col-md-6">
 								<div class="form-group">
@@ -276,38 +219,6 @@
 		</div>
 		<!-- End of home -->
 
-
-
-		<!-- <div id="home" class="banner-area"> -->
-
-			<!-- Backgound Image -->
-			<!-- <div class="bg-image bg-parallax overlay" style="background-image:url(./img/background02.jpg)"></div> -->
-			<!-- /Backgound Image -->
-
-<!-- 			<div class="section-header text-center">
-				<h4 class="sub-title">MY PROFILE</h4>
-				<h2 class="title white-text">Profile Information</h2>
-			</div>
-
-
-			<div class="container">
-				<div class="row">
-
-
-					<div id="menu-content" class="tab-content">
-
-					</div>
-
-				</div>
-			</div>
- -->
-<!-- 			<div id="menu-content" class="tab-content">
-
-			</div>
- -->
-		<!-- </div> -->
-
-
 		<!-- Footer -->
 		<footer id="footer">
 
@@ -361,7 +272,7 @@
 		<!-- jQuery Plugins -->
 		<script type="text/javascript" src="js/jquery.min.js"></script>
     	<script type="text/javascript" src="js/index.js"></script>
-    	<script type="text/javascript" src="js/profile_my_order.js"></script>
+    	<script type="text/javascript" src="js/profile.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>

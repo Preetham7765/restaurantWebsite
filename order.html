@@ -73,13 +73,14 @@
 		
 							<!-- nav -->
 							<ul class="main-nav nav navbar-nav">
-								<li><a href="#">Home</a></li>
-								<li><a href="#about">About</a></li>
-								<li><a href="#menu">Menu</a></li>
-								<li><a href="#reservation">Reservation</a></li>
-								<li><a href="#gallery">Galery</a></li>
-								<li><a href="#events">Events</a></li>
-								<li><a href="#contact">Contact</a></li>												
+								<li><a href="index.html#home">Home</a></li>
+								<li><a href="index.html#about">About</a></li>
+								<li><a href="index.html#menu">Menu</a></li>
+								<li><a href="index.html#registration">Reservation</a></li>
+								<li><a href="order.html" id="order">Order</a></li>
+								<li><a href="index.html#comments">Comments</a></li>
+								<li><a href="index.html#reply">Reply</a></li>
+								<li><a href="index.html#contact">Contact</a></li>
 							</ul>
 							<!-- /nav -->
 							<!-- button nav -->
@@ -88,9 +89,9 @@
 							</ul>-->
 		
 							<button class= " cta-nav main-button btn btn-sm" 
-								data-toggle = "modal" data-target = "#login-modal">
+								data-toggle = "modal" id="login-register">
 								Login/Register
-							</button>
+							</button>					
 							
 							
 							<!-- button nav -->
@@ -163,12 +164,24 @@
 			</div>
 		</div>
 		<!-- /container -->
+
+		<!-- Preloader -->
+		<div id="preloader">
+			<div class="preloader">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<!-- /Preloader -->
+
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 		<script type="text/javascript" src="js/google-map.js"></script>
 		<script type="text/javascript" src="js/orders.js"></script>
+    	<script type="text/javascript" src="js/login.js"></script>
 
 	</body>
 </html>

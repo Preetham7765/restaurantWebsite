@@ -18,4 +18,6 @@ include "config.php";
     }
     $jsonUserInfo = json_encode($userInfo);
 	echo $jsonUserInfo;
+
+mysqli_close($con);
 ?>

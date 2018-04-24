@@ -10,4 +10,6 @@ include "config.php";
 		array_push($rows, $row);
 	}
 	echo json_encode($rows);
+
+mysqli_close($con);
 ?>

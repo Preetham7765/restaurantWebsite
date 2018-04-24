@@ -24,12 +24,18 @@ $(document).ready(function(){
 
 	$("#add_comment").click(function() {
 		console.log("Clicked add_comment");
+		current_user_id = 1;
+		if (localStorage.getItem('user_id'))
+		{
+			current_user_id = localStorage.getItem('user_id');
+		}
 		var dataString = 
 		{
 			"name": $("#user_comment_name").val(),
 			"email": $("#user_comment_email").val(),
 			"message": $("#user_comment_message").val(),
-			"rating": $("#user_comment_rating").val()
+			"rating": $("#user_comment_rating").val(),
+			"user_id": current_user_id
 		}
 
 		dataString = JSON.stringify(dataString);
@@ -80,7 +86,7 @@ $(document).ready(function(){
 			ul.append('<li class="list-group-item" id="c_rating'+i+'">' + data + '</li>');
 			ul.append('<li class="list-group-item subject-overflow" id="c_message'+i+'">' + displayRecords[i].message + '</li>');
 			div.append(ul);
-			$(div).click(function() {
+			$(ul).click(function() {
 				var elements = $(this).find("li");
 				// $(this).children('ul').each(function() {
 				// 	console.log("Clicked: " + $(this).html());
@@ -123,33 +129,45 @@ $(document).ready(function(){
 		}
 	}
 
-	function load_events() {
-		$("#c0").click(function() {
-			console.log("Clicked c0");
-			$("#modal-title").html($("#c_user0").html()+"'s comment");
-			$("#user_rating").html($("#c_rating0").html());
-			$("#user_message").html($("#c_message0").html());
-			console.log($("#c_message0").html());
-			$("#myModal").modal();
-		});
+	$("#reserve-now").click(function() {		
+		user_id = 0;
+		if (localStorage.getItem("user_id")) {
+			user_id = localStorage.getItem("user_id");
+		}
+		console.log("Clicked reservation");
+		var reservation_details = 
+		{
+			"reg_name": $("#reg_name").val(),
+			"reg_phone": $("#reg_phone").val(),
+			"reg_date": $("#reg_date").val(),
+			"reg_email": $("#reg_email").val(),
+			"reg_number": $("#reg_number").val(),
+			"reg_time": $("#reg_time").val(),
+			"user_id": user_id
+		}
+		reservation_details = JSON.stringify(reservation_details);
 
-		$("#c1").click(function() {
-			console.log("Clicked c1");
-			$("#modal-title").html($("#c_user1").html()+"'s comment");
-			$("#user_rating").html($("#c_rating1").html());
-			$("#user_message").html($("#c_message1").html());
-			console.log($("#c_message1").html());
-			$("#myModal").modal();
-		});
+		$.ajax({
+			url: 'reservation.php',
+			data: {userData: reservation_details},
+			type: 'POST',
+			success: function(response) {
+				console.log("Reservation result: " + response);
+				if (response == "Success")
+				{
+					$("#simpleInfo-title").html("<h4>Information from Malibu Grill</h4>");
+					$("#simpleInfo-body").html("<p>Reservation successful!<p>");
+					$("#simpleInfo").modal();
+					
+					$("#reg_name").val('');
+					$("#reg_phone").val('');
+					$("#reg_date").val('');
+					$("#reg_email").val('');
+					$("#reg_number").val('');
+					$("#reg_time").val('');
+				}
+			}
+		});		
+	});
 
-		$("#c2").click(function() {
-			console.log("Clicked c2");
-			$("#modal-title").html($("#c_user2").html()+"'s comment");
-			$("#user_rating").html($("#c_rating2").html());
-			$("#user_message").html($("#c_message2").html());
-			console.log($("#c_message2").html());
-			$("#myModal").modal();
-		});
-
-	}
 });

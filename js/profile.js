@@ -1,10 +1,27 @@
 $(document).ready(function(){
 	orderRecords = [],
 
+	$("#sign-out").click(function() {
+		window.location = "index.html";
+		// $("#login-register").html("Login/Register");
+		// $("#login-register").attr("data-toggle", "modal");
+		localStorage.removeItem('user_id');
+	});
+
+	var userInfo = 
+	{
+		"user_id": localStorage.getItem("user_id")
+	}
+	userInfo = JSON.stringify(userInfo);
+
+	console.log(userInfo);
+
 	$.ajax({
 		url: "profile_my_order.php",
+		data: {userData: userInfo},
 		async: true,
 		dataType: 'json',
+		type: 'POST',
 		success: function (data) {
 			orderRecords = data;
 			// console.log(orderRecords);
@@ -63,8 +80,10 @@ $(document).ready(function(){
 
 	$.ajax({
 		url: "profile_my_comments.php",
+		data: {userData: userInfo},
 		async: true,
 		dataType: 'json',
+		type: 'POST',
 		success: function (data) {
 			commentRecords = data;
 			// console.log(commentRecords);

@@ -1,6 +1,9 @@
 <?php
 include "config.php";
-	$sql_query = "SELECT * from ORDERS ORDER BY o_time DESC";
+
+	$obj = json_decode($_POST['userData']);
+
+	$sql_query = "SELECT * from ORDERS WHERE user_id='$obj->user_id' ORDER BY o_time DESC";
 	$sth = mysqli_query($con,$sql_query);
 	$rows = array();
 
@@ -9,4 +12,6 @@ include "config.php";
 		array_push($rows, $row);
 	}
 	echo json_encode($rows);
+
+mysqli_close($con);
 ?>

@@ -6,8 +6,9 @@ include "config.php";
 	$sql_query = "SELECT MAX(rating_id)+1 AS rating_id from Ratings";
 	$newid = mysqli_fetch_array(mysqli_query($con, $sql_query));
 
-	$sql_query = "INSERT INTO Ratings (rating_id, message, username, r_time, rating)
-					VALUES ('". $newid['rating_id'] ."', '"  . $obj->message . "', '" . $obj->name . "', Now(), '" . $obj->rating ."')";
+	$sql_query = "INSERT INTO Ratings (rating_id, message, username, r_time, rating, user_id)
+					VALUES ('". $newid['rating_id'] ."', '"  . $obj->message . "', '" . $obj->name . "', Now(), '" . $obj->rating ."', '"
+								. $obj->user_id . "')";
 	// $sth = mysqli_query($con,$sql_query);
 
 
@@ -18,4 +19,6 @@ include "config.php";
 	}
 
 	echo "Inserted";
+
+mysqli_close($con);
 ?>

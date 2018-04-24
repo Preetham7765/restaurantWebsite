@@ -8,8 +8,6 @@ include "config.php";
 
 	$sql_query = "INSERT INTO ORDERS (order_id, summary, total, user_id, o_time, firstname, address, phone)
 					VALUES ('". $newid['order_id'] ."', '"  . $obj->summary . "', '" . $obj->total . "', '" . 3 . "', NOW(), '" . $obj->name . "', '" . $obj->address . "', '" . $obj->phone . "')";
-	// $sth = mysqli_query($con,$sql_query);
-
 
 	if ($con->query($sql_query) === TRUE) {
 	    error_log("New record in order table created successfully");
@@ -18,4 +16,6 @@ include "config.php";
 	}
 
 	echo "Inserted";
+
+mysqli_close($con);
 ?>

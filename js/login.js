@@ -1,6 +1,4 @@
 $(document).ready(function(){
-
-	
 	if (localStorage.getItem('user_id'))
 	{
 		console.log("Valid User ID");
@@ -17,7 +15,8 @@ $(document).ready(function(){
 		console.log("User ID not equal to 1");
 	}
 
-	$("#login-submit").click(function() {
+	function loginResponse(context)
+	{
 		var userCredentials = 
 		{
 			"email": $("#email").val(),
@@ -35,10 +34,14 @@ $(document).ready(function(){
 				{
 					localStorage.setItem('user_id', response.user_id);
 					$("#login-register").removeAttr("data-toggle");
-					$("#login-register").click(function() {
-						window.location = "profile.html";
-					});
+					if (context == "order")
+					{
+						window.location = "order.html";
+					}
+					else
+					{
 					window.location = "index.html";
+					}
 				}
 				else
 				{
@@ -50,76 +53,86 @@ $(document).ready(function(){
 				console.log(localStorage.getItem('user_id'));
 			}
 		});		
+
+	}
+
+
+
+	function registerResponse(context)
+	{
+		console.log("call registerResponse");
+		var userCredentials = 
+		{
+			"name": $("#name").val(),
+			"email": $("#newemail").val(),
+			"pwd": $("#newpwd").val()
+		}
+		userCredentials = JSON.stringify(userCredentials);
+		$.ajax({
+			url: 'register.php',
+			data: {userData: userCredentials},
+			dataType: 'json',
+			type: 'POST',
+			success: function(response) {
+				console.log("Login result: " + response.user_id);
+				if(response.user_id > 0)
+				{
+					console.log("inside true user_id");
+					localStorage.setItem('user_id', response.user_id);
+					$("#login-register").removeAttr("data-toggle");
+					if (context == "order")
+					{
+						window.location = "order.html";
+					}
+					else
+					{
+					window.location = "index.html";
+					}
+				}
+				else
+				{
+					localStorage.removeItem('user_id');
+					$("#login-register").attr("data-toggle", "modal");
+					$("#wrong-registration-credentials").html("User email account exists");
+					console.log("Error");
+				}
+				console.log(localStorage.getItem('user_id'));
+			}
+		});		
+
+	}
+
+
+	$("#login-register").click(function() {
+		$("#login-modal").modal();
+
+		$("#login-submit").off();
+		$("#login-submit").click(function() {
+			loginResponse("login");
+		});
+
+		$("#registration-submit").click(function() {
+			registerResponse("login");
+		});
 	});
 
-	
-	
-	//displayItems('lunch');
-	
-	/*
-		display each subcategory for a given category.
-	
-	*/
-	
-	function displayItems(category) {
-	
-		var categoryItems = menu_items[category]; // { }
-		console.log(menu_items);
-		var subCategory_names = Object.keys(categoryItems); // 
-		var subCatMenu = `<div id=` +`"` + category +`"` + `class="tab-pane fade in active">
-			<div class="col-md-2">
-				<div class="sidebar-nav">
-					<div class="navbar navbar-default" role="navigation">
-						<div class="navbar-collapse collapse sidebar-navbar-collapse">
-							<ul class="nav navbar-nav">`
-	
-		for(var item in subCategory_names){
-			subCatMenu += '<li id = "item' + item + '" ' + 'class = "active">' 
-							+ '<a id = "sub-cat' + item + '" class = "dummy"> ' + 
-							subCategory_names[item]  + '</a></li>';
+	$("#order").click(function() {
+		if (localStorage.getItem("user_id"))
+		{
+			window.location = "order.html";
 		}
-	
-		subCatMenu += '</ul></div><!--/.nav-collapse --></div></div></div>';
-		var subCatItems = getMenuItems(category, subCategory_names[0]); // default: select first category
-		$('div#menu-content').prepend(subCatMenu + subCatItems);   
-	   
-	}
-	
-	/*
-		returns the mark-up containing menu items
-		of all given a category and subCategory
-	
-	*/
-	
-	function getMenuItems(category, subCategory) {
-	
-		console.log(category, subCategory);
-		var active_menu = menu_items[category.trim()][subCategory.trim()]; //
-		var menu_item = '<div class="col-md-5 dish-content">';
-	
-		console.log(active_menu);
-		for(var item in active_menu) {
-			if(active_menu.hasOwnProperty(item)) {
-	
-				dish = `<div class="single-dish">
-					<div class="single-dish-heading">
-						<h4 class="name">` + active_menu[item].name + `</h4>
-							<h4 class="price">` + active_menu[item].cost + `
-								<a class="fa fa-plus-circle addItem"></a>											
-						</h4>
-					</div>
-					<p>` + active_menu[item].description + `</p>
-				</div>`
-	
-				menu_item += dish;
-	
-			} 
+		else
+		{
+			$("#login-modal").modal();
+
+			$("#login-submit").off();
+			$("#login-submit").click(function() {
+				loginResponse("order");
+			});
+			$("#registration-submit").click(function() {
+				registerResponse("login");
+			});
 		}
-	
-		menu_item += '</div>';
-	
-		return menu_item;
-	
-	}	
+	});
 
 });

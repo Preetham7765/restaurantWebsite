@@ -702,6 +702,12 @@ textarea.input {
 	background-color:#FFF;
 }
 
+#menu-profile-content {
+	overflow:auto;
+	padding:30px 2% 30px;
+	background-color:#FFF;
+}
+
 .single-dish + .single-dish {
 	margin-top:30px;
 }
@@ -1419,4 +1425,12 @@ textarea.input {
 .input {
 	margin-top:30px;
 	/*margin-bottom:20px;*/
+}
+
+#comment_abhi ul:hover {
+	cursor: pointer;
+}
+
+.red-error {
+	color: red;
 }
