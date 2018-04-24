@@ -4,6 +4,7 @@ $(document).ready(function() {
 	{title: "Breakfast- Item1", count: 7, id: 1, cost: "25"},
 	{title: "Breakfast- Item2", count: 6, id: 2, cost: "125"}
 	];
+
 	order_summary = localStorage.getItem('order_summary');
 
 	new_summary = JSON.parse(order_summary);
@@ -19,4 +20,77 @@ $(document).ready(function() {
 		$("#order-summary").append(element);
 	}
 	$("#total-display").html("$" + grad_total);
+
+	$("#firstname").val("Manoj");
+	$("#lastname").val("Joshi");
+	$("#address").val("419 W Amaryllis Drive");
+	$("#city").val("Bloomington");
+	$("#state").val("Indiana");
+	$("#zip").val("47404");
+	$("#phone").val("9999999999");
+	$("#email").val("manoj@gmail.com");
+
+    paypal.Button.render({
+
+        // Set your environment
+
+        env: 'sandbox', // sandbox | production
+
+        // Specify the style of the button
+
+        style: {
+            label: 'checkout',
+            size:  'large',    // small | medium | large | responsive
+            shape: 'pill',     // pill | rect
+            color: 'black'      // gold | blue | silver | black
+        },
+
+        // PayPal Client IDs - replace with your own
+        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+
+        client: {
+            sandbox:    'AVKwzgot1GI1hWkiPP8O58nPEd6F6vmKtWAVVqNMiALZWbk5ddCbbDwak9JewAVclg_W1lkZYpnJgii5',
+            production: '<insert production client id>'
+        },
+
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: grad_total, currency: 'USD' }
+                        }
+                    ]
+                }
+            });
+        },
+
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function() {
+            	console.log($("#address").val() + ", " + $("#city").val() + ", " + $("#state").val() + " " + $("#zip").val());
+
+            	var order_summary_post = {
+            		"summary": order_summary,
+            		"total": grad_total,
+            		"name": $("#firstname").val(),
+            		"address": $("#address").val() + ", " + $("#city").val() + ", " + $("#state").val() + " " + $("#zip").val(),
+            		"phone": $("#phone").val()
+            	}
+            	order_summary_post = JSON.stringify(order_summary_post);
+
+				$.ajax({
+					url: 'save_order.php',
+					data: {myData: order_summary_post},
+					type: 'POST',
+					success: function(response) {
+						console.log("Saved Order");
+					}
+				});		
+
+                window.alert('Payment Complete!');
+            });
+        }
+
+    }, '#paypal-button-container');
+
 });

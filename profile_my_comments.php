@@ -1,6 +1,5 @@
 <?php
 include "config.php";
-
 	$sql_query = "SELECT * from Ratings ORDER BY r_time DESC";
 	$sth = mysqli_query($con,$sql_query);
 	$rows = array();
@@ -9,5 +8,7 @@ include "config.php";
 		// $rows['root_name'] = $row;
 		array_push($rows, $row);
 	}
+
+	// error_log(json_encode($rows));
 	echo json_encode($rows);
 ?>

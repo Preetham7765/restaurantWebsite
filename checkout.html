@@ -32,7 +32,7 @@
 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
 
 		<!-- Order stylesheet -->
-		<link type="text/css" rel="stylesheet" href="css/order-style.css"/>
+		<!-- <link type="text/css" rel="stylesheet" href="css/order-style.css"/> -->
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,8 +65,7 @@
 
 						<!-- menu nav -->
 						<ul class="menu-nav">
-						  <li class="active"><a data-toggle="tab" href="#menu1">Address</a></li>
-						  <li><a data-toggle="tab" href="#menu2">Payment Method</a></li>
+						  <li class="active"><a data-toggle="tab" href="#menu1">Address and Payment</a></li>
 						</ul>
 						<!-- /menu nav -->
 
@@ -81,11 +80,11 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="name">First Name:</label>
-											<input class="input" type="text" placeholder="Name" id="name">
+											<input class="input" type="text" placeholder="First Name" id="firstname">
 										</div>
 										<div class="form-group">
 											<label for="phone">Address:</label>
-											<input class="input" type="tel" placeholder="Phone" id="phone">
+											<input class="input" type="tel" placeholder="Address" id="address">
 										</div>
 										<div class="form-group">
 											<label for="date">State:</label>
@@ -100,7 +99,7 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label for="email">Last Name:</label>
-											<input class="input" type="email" placeholder="Email" id="email">
+											<input class="input" type="email" placeholder="Last Name" id="lastname">
 										</div>
 										<div class="form-group">
 											<label for="name">City:</label>
@@ -117,75 +116,10 @@
 									</div>
 
 									<div class="col-md-12 text-center">
-										<button class="main-button" data-toggle="tab" href="#menu2">Payment Method</button>
+										<div id="paypal-button-container"></div>
 									</div>
 								</div>
 								<!-- end menu1 -->
-
-								<!-- menu2 -->
-								<div id="menu2" class="tab-pane fade in">
-
-									<!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post"> -->
-										<!-- <input type="hidden" name="cmd" value="_s-xclick"> -->
-										<input type="hidden" name="cmd" value="_xclick">
-										<input type="hidden" name="business" value="kai.dranzer32567@gmail.com">
-										<!-- <input type="hidden" name="amount" value="100"> -->
-										<input type="hidden" name="item_name" value="Cart">
-										<input type="hidden" name="currency_code" value="USD">
-										<input type="hidden" name="amount" value="100.00">										
-										<!-- <input type="hidden" name="amount" value="100.00"> -->
-										<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
-										<div align="center">
-											<h4 class="sub-title">Pay with Paypal</h4>
-											<input class="checkout-submit" type="image" src="img/paypal-express-checkout-logo.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-											<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-										</div>
-									<!-- </form> -->
-
-									<!---
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="name">Name:</label>
-											<input class="input" type="text" placeholder="Name" id="name">
-										</div>
-										<div class="form-group">
-											<label for="phone">Phone:</label>
-											<input class="input" type="tel" placeholder="Phone" id="phone">
-										</div>
-										<div class="form-group">
-											<label for="date">Date:</label>
-											<input class="input" type="text" placeholder="MM/DD/YYYY" id="date">
-										</div>
-									</div>
-
-									<div class="col-md-6">
-										<div class="form-group">
-											<label for="email">Email:</label>
-											<input class="input" type="email" placeholder="Email" id="email">
-										</div>
-										<div class="form-group">
-											<label for="number">Number of Guests:</label>
-											<select class="input" id="number">
-												<option>1 Person</option>
-												<option>2 People</option>
-												<option>3 People</option>
-												<option>4 People</option>
-												<option>5 People</option>
-												<option>6 People</option>
-											</select>
-										</div>
-										<div class="form-group">
-										  <label for="time">Time:</label>
-										  <input class="input" type="text" placeholder="HH:MM" id="time">
-										</div>
-									</div>
-
-									<div class="col-md-12 text-center">
-										<button class="main-button">Place Order</button>
-									</div>
-								-->
-								</div>
-								<!-- end menu2 -->
 
 							</div>
 							<!-- end menu content -->
@@ -221,7 +155,10 @@
 
 		<!-- jQuery Plugins -->
     	<!-- <script type="text/javascript" src="js/index.js"></script> -->
+
 		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="https://www.paypalobjects.com/api/checkout.js"></script>
+		<!-- <script type="text/javascript" src="js/checkout.js"></script> -->
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmK_bdJ6DF3zIWcrEz0cd-z-_2j937Z5I&v=3.exp&sensor=false"></script>

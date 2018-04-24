@@ -1,7 +1,6 @@
 <?php
 include "config.php";
-
-	$sql_query = "SELECT * from Ratings ORDER BY r_time DESC";
+	$sql_query = "SELECT * from ORDERS ORDER BY o_time DESC";
 	$sth = mysqli_query($con,$sql_query);
 	$rows = array();
 
