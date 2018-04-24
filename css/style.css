@@ -1352,7 +1352,7 @@ textarea.input {
 	}
   }
 
-.addItem, #deleteItem {
+.addItem, #deleteItem, #addItem-summary{
 	font-size:18px;
 	/* margin-right: 20px; */
 	/* margin-left: 20px; */

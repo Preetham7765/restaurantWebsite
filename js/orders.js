@@ -170,19 +170,20 @@ $(document).ready(function() {
             }
         }    
 
-    /*$.ajax(
+    $.ajax(
 
         {
-            url : 'menu-items.php',
+            url : 'load_menu_item.php',
             dataType: 'json',
             success: function(result) {
                 menu_items = result;
                 console.log(menu_items);
+                displayItems('lunch');
             } 
         }
-    );*/
+    );
 
-    displayItems('lunch');
+    //displayItems('lunch');
 
     /*
         display each subcategory for a given category.
@@ -192,6 +193,7 @@ $(document).ready(function() {
     function displayItems(category) {
 
         var categoryItems = menu_items[category]; // { }
+        console.log(menu_items);
         var subCategory_names = Object.keys(categoryItems); // 
         var subCatMenu = `<div id=` +`"` + category +`"` + `class="tab-pane fade in active">
             <div class="col-md-2">
@@ -235,7 +237,7 @@ $(document).ready(function() {
                                 <a class="fa fa-plus-circle addItem"></a>											
                         </h4>
                     </div>
-                    <p>` + active_menu[item].descp + `</p>
+                    <p>` + active_menu[item].description + `</p>
                 </div>`
 
                 menu_item += dish;
@@ -314,7 +316,7 @@ $(document).ready(function() {
             //addButton
             var addButton = document.createElement('a');
             addButton.setAttribute('id', 'addItem-summary');            
-            addButton.setAttribute('class', 'fa fa-plus-circle addItem');
+            addButton.setAttribute('class', 'fa fa-plus-circle ');
 
             //count 
             var count =document.createElement('span');
@@ -389,6 +391,7 @@ $(document).ready(function() {
     }
 
     $(".container").on('click', '.addItem', function() {
+        console.log("add summary");
         var itemTitle = $(this).parent().prev().text();
         console.log("Debug", $(this).parent().prev().text());
         addItem(itemTitle, $(this));
@@ -396,6 +399,7 @@ $(document).ready(function() {
 
 
     $(".container").on('click', '#addItem-summary', function() {
+        console.log("add summary");
         var itemTitle = $(this).parent().find('span.item-title').html();
         console.log("itemTitle",itemTitle);
         addItem(itemTitle);
