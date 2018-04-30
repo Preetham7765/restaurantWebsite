@@ -19,10 +19,6 @@ foreach($menu_catgory as $category) {
                 $new_element = array('name'=>$row['name'], 'description'=> $row['description'], 'cost'=> $row['cost']);
                 if (sizeof($new_element)!=0)
                 {
-                    error_log($category);
-                    error_log($current_subcategory);
-                    error_log($row["name"]);
-                    error_log(json_encode($new_element));
                     array_push($sub_categories[$current_subcategory], $new_element);
                 }
             }
@@ -31,10 +27,6 @@ foreach($menu_catgory as $category) {
                 $new_element = array('name'=>$row['name'], 'description'=> $row['description'], 'cost'=> $row['cost']);
                 if (sizeof($new_element)!=0)
                 {
-                    error_log($category);
-                    error_log($current_subcategory);
-                    error_log($row["name"]);
-                    error_log(json_encode($new_element));
                     array_push($sub_categories[$current_subcategory], $new_element);
                 }
             }

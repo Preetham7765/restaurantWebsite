@@ -707,6 +707,15 @@ textarea.input {
 	overflow:auto;
 	padding:30px 2% 30px;
 	background-color:#FFF;
+	border-radius: 25px;
+}
+
+#chef-content {
+	overflow:auto;
+	padding:30px 2% 30px;
+	background-color:#FFF;
+	border-radius: 25px;
+	height: calc(70.7vh);
 }
 
 .single-dish + .single-dish {
@@ -1522,3 +1531,8 @@ textarea.input {
 	cursor: pointer;
 }
 
+.user_display {
+	font-size: 18px !important;
+    color: #f36700;
+    cursor: auto;
+}

@@ -90,7 +90,6 @@
 
 					<!-- button nav -->
 					<button class= " cta-nav main-button btn btn-sm" id="sign-out">Sign Out</button>
-					</button>					
 					<!-- button nav -->
 
 					<!-- contact nav -->
@@ -127,23 +126,23 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="name">First Name:</label>
-									<input class="input" type="text" placeholder="Name" id="name">
+									<input class="input" type="text" placeholder="Firstname" id="p_firstname">
 								</div>
 								<div class="form-group">
 									<label for="phone">Address: Apt number</label>
-									<input class="input" type="text" placeholder="Apt #" id="phone">
+									<input class="input" type="text" placeholder="Apt #" id="p_apt">
 								</div>
 								<div class="form-group">
 									<label for="date">Adress: Line 2</label>
-									<input class="input" type="text" placeholder="Address Line 2" id="addr_line2">
+									<input class="input" type="text" placeholder="Address Line 2" id="p_addr2">
 								</div>
 								<div class="form-group">
 									<label for="date">State:</label>
-									<input class="input" type="text" placeholder="State" id="phone">
+									<input class="input" type="text" placeholder="State" id="p_state">
 								</div>
 								<div class="form-group">
 									<label for="date">Phone:</label>
-									<input class="input" type="text" placeholder="Phone Number" id="phone">
+									<input class="input" type="text" placeholder="Phone Number" id="p_phone">
 								</div>
 							</div>
 							<!-- End of first column -->
@@ -151,26 +150,49 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="email">Last Name:</label>
-									<input class="input" type="email" placeholder="Email" id="email">
+									<input class="input" type="email" placeholder="Lastname" id="p_lastname">
 								</div>
 								<div class="form-group">
-									<label for="name">Adress: Line 2:</label>
-									<input class="input" type="text" placeholder="Address Line 2" id="city">
+									<label for="name">Adress: Line 1:</label>
+									<input class="input" type="text" placeholder="Address Line 1" id="p_addr1">
 								</div>
 								<div class="form-group">
 									<label for="name">City:</label>
-									<input class="input" type="text" placeholder="City" id="city">
+									<input class="input" type="text" placeholder="City" id="p_city">
 								</div>
 								<div class="form-group">
 								  <label for="time">Zip Code</label>
-								  <input class="input" type="text" placeholder="Zip Code" id="zip">
+								  <input class="input" type="text" placeholder="Zip Code" id="p_zip">
 								</div>
 								<div class="form-group">
 								  <label for="time">Email</label>
-								  <input class="input" type="text" placeholder="Email" id="email">
+								  <input class="input" type="text" placeholder="Email" id="p_email">
 								</div>
 							</div>
+
+							<!-- Sample modal popup -->
+							<div class="modal fade" id="simpleInfo" role="dialog" style="padding-top: 100px;">
+								<div class="modal-dialog">
+								
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 class="modal-title" id="simpleInfo-title"></h4>
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+										</div>
+										<div class="modal-body" id="simpleInfo-body">
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal" id="close_modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Sample modal popup -->
+
 							<!-- End of second column -->
+
+							<center><button class= "main-button btn btn-sm" id="update">Update</button></center>
 
 						</div>
 						<!-- End of info tab active -->

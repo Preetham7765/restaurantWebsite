@@ -34,13 +34,16 @@ $(document).ready(function(){
 				{
 					localStorage.setItem('user_id', response.user_id);
 					$("#login-register").removeAttr("data-toggle");
-					if (context == "order")
-					{
-						window.location = "order.html";
-					}
-					else
-					{
-					window.location = "index.html";
+					if (response.first == 'Admin') {
+						window.location = 'admin.html';
+					} else if(response.first == 'Chef') {
+						window.location = 'chef.html';
+					} else {
+						if (context == "order") {
+							window.location = "order.html";
+						} else {
+							window.location = "index.html";
+						}
 					}
 				}
 				else

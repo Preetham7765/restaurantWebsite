@@ -41,37 +41,7 @@
 
     </head>
     <body>
-		<div id = "update-modal" class="modal fade login-register-form" role="dialog">
-			<div class="modal-dialog modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							x
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="tab-content">
-							<div id="update-form" class="tab-pane fade in active">
-									<div class="form-group">
-										<label for="itemtitle">Title:</label>
-										<input type="text" class="form-control" id="item-title" name="itemtitle"></div>
-									</div>
-									<div class="form-group">
-										<label for="itemdescription">Description:</label>
-										<input type="text" class="form-control" id="item-description" name="itemdescription">
-									</div>
-									<div class="form-group">
-										<label for="itemprice">Price:</label>
-										<input type="text" class="form-control" id="item-price" name="itemprice">
-									</div>
-									<button class="btn btn-default main-button" id="update-submit">Update</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Header -->
+				<!-- Header -->
 		<header id="header">
 
 			<!-- Top nav -->
@@ -109,7 +79,7 @@
 
 					<!-- nav -->
 					<ul class="main-nav nav navbar-nav">
-						<li><a href="#home" class="user_display">Welcome to Admin's Page</a></li>
+						<li><a href="#home" class="user_display">Welcome to Chef's Page</a></li>
 					</ul>
 					<!-- /nav -->
 
@@ -139,7 +109,7 @@
 		</header>
 		<!-- /Header -->
 
-		<div id="menu" class="section">
+		<div id="menu", class="section">
 			<!-- Backgound Image -->
 			<div class="bg-image bg-parallax overlay" style="background-image:url(./img/background01.jpg)"></div>
 			<!-- /Backgound Image -->
@@ -149,16 +119,40 @@
 					<h2 class="title white-text">Online Order</h2>
 				</div>
 				<div class="container">
-					<ul class="menu-nav">
-						<li class="active"><a data-toggle="tab" id="lunch">Lunch</a></li>
-						<li><a data-toggle="tab" id="dinner">Dinner</a></li>
-						<li><a data-toggle="tab" id="drinks">Drinks</a></li>
-						<li><a data-toggle="tab" id="add-new-item">AddItem</a></li>
-					</ul>
-					<div id="menu-content" class="tab-content">		
+					<div id="chef-content">
+						<div id="past_orders"  class="tab-pane fade in">
+ 						</div>
 					</div>
 					<!-- end menucontent -->
+	
+
+				<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+							  <button type="button" class="close" data-dismiss="modal">&times;</button>
+							  <h4 class="modal-title" id="modal-title"></h4>
+							</div>
+							<!-- End modal header -->
+
+							<div class="modal-body content-newline" id="modal-body">
+							</div>
+							<!-- End modal body -->
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" id="deliver">Deliver</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>
+							</div>
+							<!-- End modal footer/close -->
+						</div>
+						<!-- End modal content -->
+					</div>
+					<!-- End modal dialog -->
 				</div>
+				<!-- End of modal -->
+			</div>
 				<!-- /container -->
 			</div>	
 			<!-- row -->
@@ -180,7 +174,8 @@
 		<script type="text/javascript" src="js/owl.carousel.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 		<script type="text/javascript" src="js/google-map.js"></script>
-		<script type="text/javascript" src="js/admin.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/chef.js"></script>
     </body>
 	
 	</html>

@@ -29,6 +29,64 @@ $(document).ready(function(){
 		}
 	});
 
+	$.ajax({
+		url: "load_personal_information.php",
+		data: {userData: userInfo},
+		async: true,
+		dataType: 'json',
+		type: 'POST',
+		success: function (data) {
+			personalInformation = data;
+			// console.log(orderRecords);
+			load_personal_information(personalInformation);
+		}
+	});
+
+	function load_personal_information(personalInformation)
+	{
+		console.log("Loading personal Information: " + personalInformation[0].First);
+		$("#p_firstname").val(personalInformation[0].First);
+		$("#p_lastname").val(personalInformation[0].Last);
+		$("#p_apt").val(personalInformation[0].apt_num);
+		$("#p_addr1").val(personalInformation[0].addr_1);
+		$("#p_addr2").val(personalInformation[0].addr_2);
+		$("#p_city").val(personalInformation[0].city);
+		$("#p_state").val(personalInformation[0].state);
+		$("#p_zip").val(personalInformation[0].zip);
+		$("#p_phone").val(personalInformation[0].phone);
+		$("#p_email").val(personalInformation[0].email);
+	}
+
+	$("#update").click(function() {
+		var personalInfo = {
+			"p_firstname": $("#p_firstname").val(),
+			"p_lastname": $("#p_lastname").val(),
+			"p_apt": $("#p_apt").val(),
+			"p_addr1": $("#p_addr1").val(),
+			"p_addr2": $("#p_addr2").val(),
+			"p_city": $("#p_city").val(),
+			"p_state": $("#p_state").val(),
+			"p_zip": $("#p_zip").val(),
+			"p_phone": $("#p_phone").val(),
+			"p_email": $("#p_email").val(),
+			"p_userid": localStorage.getItem("user_id")
+		}
+	
+		personalInfo = JSON.stringify(personalInfo);
+		$.ajax({
+			url: "update_personal_information.php",
+			data: {personalData: personalInfo},
+			async: true,
+			type: 'POST',
+			success: function (data) {
+				$("#simpleInfo-title").html("<h4>Mesage from Malibu Grill</h4>")
+				$("#simpleInfo-body").html("<p>User Information updated successfully</p>")
+				$("#simpleInfo").modal();
+			}
+		});
+
+	});
+
 	function load_my_orders()
 	{
 		$('#past_orders').html('');
