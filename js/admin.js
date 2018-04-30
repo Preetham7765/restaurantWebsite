@@ -2,6 +2,8 @@ $(document).ready(function() {
     "use strict"
 
     var menu_items;
+    var updateCategory; // try to remove this dont use global 
+    var updateSubCategory; // try to remove this dont use global
 
     $.ajax(
 
@@ -28,18 +30,28 @@ $(document).ready(function() {
 
     var categoryItems = menu_items[category]; // { }
     console.log(menu_items);
+    var count = 0;
     var subCategory_names = Object.keys(categoryItems); // 
-    var subCatMenu = `<div id=` +`"` + category +`"` + `class="tab-pane fade in active">
+    var subCatMenu = `<div id=` +`"` + category +`"` + `class="tab-pane fade in active category">
         <div class="col-md-2">
             <div class="sidebar-nav">
                 <div class="navbar navbar-default" role="navigation">
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav">`
 
-    for(var item in subCategory_names){
-        subCatMenu += '<li id = "item' + item + '" ' + 'class = "active">' 
+    for(var item in subCategory_names){ 
+        if(count == 0){
+            subCatMenu += '<li id = "item' + item + '" ' + 'class = "active">' 
                         + '<a id = "sub-cat' + item + '" class = "dummy"> ' + 
                         subCategory_names[item]  + '</a></li>';
+        }
+        else {
+            subCatMenu += '<li id = "item' + item + '" ' + '>' 
+                        + '<a id = "sub-cat' + item + '" class = "dummy"> ' + 
+                        subCategory_names[item]  + '</a></li>';
+
+        }
+        count ++;
     }
 
     subCatMenu += '</ul></div><!--/.nav-collapse --></div></div></div>';
@@ -69,8 +81,9 @@ $(document).ready(function() {
                     <div class="single-dish-heading">
                         <h4 class="name">` + active_menu[item].name + `</h4>
                             <h4 class="price">` + active_menu[item].cost + `
-                                <a class="fa fa-remove removeitem"></a>											
-                        </h4>
+                                <a class="fa fa-remove removeitem"></a>
+                                <a class="fa fa-pencil-square-o edititem"></a>										
+                            </h4>
                     </div>
                     <p>` + active_menu[item].description + `</p>
                 </div>`
@@ -89,10 +102,12 @@ $(document).ready(function() {
 
     function removeItem(itemName, subCategory, category, id) {
         var data = {'cmd': 'delete','item': itemName, 'subCategory': subCategory, 'category': category};
-        $.post('update.php', data, function(response) {
-            // do something here with the returnedData
-
-            
+        // console.log(category,subCategory)
+        //console.log(menu_items[category][subCategory.trim()])
+        // var sendData = 
+        var dataString = JSON.stringify(data);
+        $.post('update.php', {request_data: dataString}, function(response) {
+            // do something here with the returnedDate
             if(response === 'OK') {
                 console.log('removing item',menu_items[category][subCategory]);
                 for(var item in menu_items[category][subCategory]){
@@ -110,6 +125,122 @@ $(document).ready(function() {
 
     }
 
+    function editItem(category, subCategory, itemName, itemDescription, itemPrice) {
+
+        console.log("itemName:",itemName, " description:",itemDescription, " itemPrice:", itemPrice);
+
+        $('#item-title').val(itemName);
+        $('#item-description').val(itemDescription);
+        $('#item-price').val(itemPrice); 
+        
+        console.log("editItem category",category);
+        updateCategory = category;
+        updateSubCategory = subCategory;
+
+        $('#update-modal').modal('show');
+    }
+
+    function updateItem(title,description,price) {
+
+        // 3 places to update UI, menu_items and backend
+        console.log("updateCategory:",updateCategory," updateSubCategory", updateSubCategory);
+        console.log("title:",title," description", description," price:", price);
+        var cmd = 2; // 0->nochange 1->update 2->insert
+
+        var items = menu_items[updateCategory][updateSubCategory];
+        for(var idx in items) {
+            console.log("title",items[idx].name, title);
+            if(items[idx].name === title){
+                if(items[idx].description === description){
+                    if(items[idx].cost !== price){
+                        cmd = 1;
+                        var data = {
+                            'cmd': 'update',
+                            'category': updateCategory,
+                            'subcategory': updateSubCategory,
+                            'name': title,
+                            'description': description,
+                            'cost': price,
+                        };
+                        var dataString = JSON.stringify(data)
+                        $.post('update.php', {request_data: dataString}, function(response){
+                            items[idx].cost = price;
+                            $('#item'+idx + '.single-dish').find('.price').html(price 
+                                +`<a class="fa fa-remove removeitem"></a>
+                                <a class="fa fa-pencil-square-o edititem"></a>`	// hack here should hamdle properly
+                            );
+                            console.log("changing idx price",idx);
+                        });
+                        
+                    }
+                    else {
+                        console.log("changing value to 0");
+                        cmd = 0;
+                    }
+                   
+                }
+                else {
+                    console.log(items[idx].description, description);
+                    cmd = 1;
+                    var data = {
+                        'cmd': 'update',
+                        'category': updateCategory,
+                        'subcategory': updateSubCategory,
+                        'name': title,
+                        'description': description,
+                        'cost': price,
+                    };
+                    var dataString = JSON.stringify(data)
+                    $.post('update.php', {request_data: dataString}, function(response){
+                        items[idx].description = description;
+                        $('#item'+idx + '.single-dish').find('p').text(description);  
+                        console.log("changing idx description ",idx);                                 
+                    });    
+                }
+                break;
+            }
+    
+        }
+        console.log("cmd: ", cmd);
+        if(cmd == 2) {
+            console.log("Pushing new data");
+            var data = {
+                'cmd': 'insert',
+                'category': updateCategory,
+                'subcategory': updateSubCategory,
+                'name': title,
+                'description': description,
+                'cost': price,
+            };
+            var dataString = JSON.stringify(data);
+            $.post('update.php', {request_data: dataString}, function(response){
+
+                items.push(
+                    {
+                        'name': title,
+                        'description': description,
+                        'cost': price,
+                    }
+                );
+
+                var dish = `<div id="item` + (items.length -1) + '" ' + `class="single-dish">
+                        <div class="single-dish-heading">
+                            <h4 class="name">` + title + `</h4>
+                                <h4 class="price">` + price + `
+                                    <a class="fa fa-remove removeitem"></a>
+                                    <a class="fa fa-pencil-square-o edititem"></a>										
+                                </h4>
+                        </div>
+                        <p>` + description + `</p>
+                    </div>`
+                $('div.dish-content').append(dish);
+            });
+            
+        }
+ 
+        console.log(menu_items);
+
+    }
     function addNewItem(){
         var newItemform = `<div class =" add-new-item tab-pane fade in active" >
             <h3 class="title">Add new Item</h3>
@@ -163,7 +294,9 @@ $(document).ready(function() {
 
     $(".container").on('click', '.dummy', function() {
         var subCategory = $(this).text();
-        var category = $('.tab-pane').attr('id');
+        $('.navbar-nav li.active').removeClass('active');
+        $(this).parent().addClass('active');
+        var category = $('.tab-pane.category').attr('id');
         var subCatItems= getMenuItems(category, subCategory);
         console.log(subCatItems);
         $('div.dish-content').remove();
@@ -174,13 +307,43 @@ $(document).ready(function() {
     $(".container").on('click', '.removeitem', function(){
 
         var item = $(this).closest('h4').prev().html().trim();
-        var subCategory = $('.dummy').text().trim();
-        var category = $('.tab-pane').attr('id').trim();
+        console.log();
+        var subCategory = $('.navbar-nav li.active').children().text();//$('.dummy').text().trim();
+        var category = $('.tab-pane.category').attr('id').trim();
         var id = $(this).closest('div.single-dish').attr('id').trim();
-        console.log(id);
-        removeItem(item,subCategory,category, id);
+        console.log("removeitem calling","item",item, "Sub cat",subCategory, "Cat",category);
+        removeItem(item,subCategory.trim(),category.trim(), id);
 
 
+    });
+
+    $(".container").on('click', '.edititem', function(){
+
+        var item = $(this).closest('h4').prev().html().trim();
+        var price = $(this).closest('h4.price').text();
+        var description = $(this).closest('.single-dish').children('p').text();
+        console.log(description);
+        var subCategory = $('.navbar-nav li.active').children().text().trim();//$('.dummy').text().trim();
+        var category = $('.tab-pane.category').attr('id').trim();
+        //console.log("removeitem calling","item",item, "Sub cat",subCategory, "Cat",category);
+        // removeItem(item,subCategory.trim(),category.trim(), id);
+        editItem(category, subCategory,item,description.trim(),price.trim())
+
+
+
+    });
+
+    $('#update-submit').click(function() {
+        var title = $('#item-title').val().trim();
+        var description = $('#item-description').val().trim();
+        var price = $('#item-price').val().trim();
+        
+        console.log("update price:", price);
+        $('#update-modal').modal('hide');
+
+        updateItem(title,description,price);
+
+    
     });
 
     $(".container").on('click', '#submit-new-item', function(){
@@ -203,14 +366,19 @@ $(document).ready(function() {
 		dataString = JSON.stringify(dataString);
 		$.ajax({
 			url: 'update.php',
-			data: {myData: dataString},
+			data: {request_data: dataString},
 			type: 'POST',
 			success: function(response) {
 
                 if(response === 'OK' ){
                     var newData = {'name':name, 'description':description, 'cost': cost};
-                    console.log(category, subCategory);                    
-                    menu_items[category][subCategory].push(newData);
+                    console.log(category, subCategory);
+                    if(menu_items[category][subCategory]) 
+                        menu_items[category][subCategory].push(newData);
+                    else{
+                        menu_items[category][subCategory] = [];
+                        menu_items[category][subCategory].push(newData);
+                    }
                     //var subCatItems= getMenuItems(category, subCategory);
                     //console.log(subCatItems);
                     $('div.add-new-item').remove();
@@ -223,6 +391,20 @@ $(document).ready(function() {
                     $('div.dish-content').remove();
                     var $element = 'div#'+ category + ' > div:nth-child(1)';
                     $($element).after(subCatItems);
+                    console.log("removing element");
+                    $('.navbar-nav li.active').removeClass('active');
+                    console.log(menu_items[category]);
+                    var count = 0;
+                    for(var key in menu_items[category]){
+                            if(key == subCategory){
+                                break;
+                            }
+                            count++;
+                    }
+                    // var elementPos = menu_items[category].map(function(x) {return x.name; }).indexOf(subCategory);
+                    console.log(count);
+                    // console.log($('a#sub-cat'+count));
+                    $('.navbar-nav li#item'+count).addClass('active');
                 }
 			}
 		});		

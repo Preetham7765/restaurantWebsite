@@ -41,7 +41,37 @@
 
     </head>
     <body>
-				<!-- Header -->
+		<div id = "update-modal" class="modal fade login-register-form" role="dialog">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							x
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="tab-content">
+							<div id="update-form" class="tab-pane fade in active">
+									<div class="form-group">
+										<label for="itemtitle">Title:</label>
+										<input type="text" class="form-control" id="item-title" name="itemtitle"></div>
+									</div>
+									<div class="form-group">
+										<label for="itemdescription">Description:</label>
+										<input type="text" class="form-control" id="item-description" name="itemdescription">
+									</div>
+									<div class="form-group">
+										<label for="itemprice">Price:</label>
+										<input type="text" class="form-control" id="item-price" name="itemprice">
+									</div>
+									<button class="btn btn-default main-button" id="update-submit">Update</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Header -->
 		<header id="header">
 
 			<!-- Top nav -->
