@@ -700,6 +700,7 @@ textarea.input {
 	overflow:auto;
 	padding:30px 2% 30px;
 	background-color:#FFF;
+	border-radius: 25px;
 }
 
 #menu-profile-content {

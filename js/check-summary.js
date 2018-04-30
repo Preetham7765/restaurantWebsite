@@ -15,7 +15,7 @@ $(document).ready(function() {
 		summary_item_title = '<span class="summary-item-title">' + new_summary[iter].title + '</span>'
 		summary_item_count = '<span class="summary-item-count"> x' + new_summary[iter].count +'</span>'
 		summary_item_cost = '<span class="summary-item-cost"> $' + new_summary[iter].cost +'</span>'
-		grad_total += parseInt(new_summary[iter].cost);
+		grad_total += (parseInt(new_summary[iter].cost) * parseInt(new_summary[iter].count));
 		element = '<li class="list-group-item">' + summary_item_title + summary_item_count + summary_item_cost +'</li>';
 		$("#order-summary").append(element);
 	}
@@ -87,7 +87,12 @@ $(document).ready(function() {
 					}
 				});		
 
-                window.alert('Payment Complete!');
+				$("#simpleInfo-title").html("<h4>Mesage from Malibu Grill</h4>")
+				$("#simpleInfo-body").html("<p>Payment Complete!</p>")
+				$("#simpleInfo").modal();
+				$("#close_modal").click(function() {
+	                window.location = "index.html";
+				});
             });
         }
 
